@@ -1,0 +1,123 @@
+"""
+Window discovery and capture utilities (Windows-specific).
+
+Finds a poker client window by title substring and captures its contents.
+"""
+
+import ctypes
+import ctypes.wintypes
+import sys
+from typing import Optional
+
+import numpy as np
+import mss
+
+from src.capture.screenshot import grab_region
+
+
+def find_window(title_substring: str) -> Optional[dict]:
+    """
+    Find the first visible window whose title contains `title_substring` (case-insensitive).
+
+    Returns:
+        dict with keys: hwnd (int), title (str), bbox (left, top, width, height)
+        or None if not found.
+    """
+    if sys.platform != "win32":
+        raise RuntimeError("Window discovery is only supported on Windows.")
+
+    user32 = ctypes.windll.user32
+    results = []
+
+    def _enum_callback(hwnd, _):
+        if not user32.IsWindowVisible(hwnd):
+            return True
+        length = user32.GetWindowTextLengthW(hwnd)
+        if length == 0:
+            return True
+        buf = ctypes.create_unicode_buffer(length + 1)
+        user32.GetWindowTextW(hwnd, buf, length + 1)
+        title = buf.value
+        if title_substring.lower() in title.lower():
+            rect = ctypes.wintypes.RECT()
+            user32.GetWindowRect(hwnd, ctypes.byref(rect))
+            w = rect.right - rect.left
+            h = rect.bottom - rect.top
+            if w > 0 and h > 0:
+                results.append({
+                    "hwnd": hwnd,
+                    "title": title,
+                    "bbox": (rect.left, rect.top, w, h),
+                })
+        return True
+
+    EnumWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.wintypes.HWND, ctypes.wintypes.LPARAM)
+    user32.EnumWindows(EnumWindowsProc(_enum_callback), 0)
+    return results[0] if results else None
+
+
+def list_windows() -> list[dict]:
+    """Return all visible windows with non-empty titles."""
+    if sys.platform != "win32":
+        return []
+
+    user32 = ctypes.windll.user32
+    results = []
+
+    def _enum_callback(hwnd, _):
+        if not user32.IsWindowVisible(hwnd):
+            return True
+        length = user32.GetWindowTextLengthW(hwnd)
+        if length == 0:
+            return True
+        buf = ctypes.create_unicode_buffer(length + 1)
+        user32.GetWindowTextW(hwnd, buf, length + 1)
+        title = buf.value
+        rect = ctypes.wintypes.RECT()
+        user32.GetWindowRect(hwnd, ctypes.byref(rect))
+        w = rect.right - rect.left
+        h = rect.bottom - rect.top
+        if w > 0 and h > 0:
+            results.append({"hwnd": hwnd, "title": title, "bbox": (rect.left, rect.top, w, h)})
+        return True
+
+    EnumWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.wintypes.HWND, ctypes.wintypes.LPARAM)
+    user32.EnumWindows(EnumWindowsProc(_enum_callback), 0)
+    return results
+
+
+def capture_window(hwnd: int) -> Optional[np.ndarray]:
+    """
+    Capture a window's current on-screen position.
+
+    NOTE: mss captures the screen bitmap at the window's bounding box.
+    The window must be unobstructed for accurate results.
+
+    Returns:
+        BGR numpy array or None if the window can no longer be found.
+    """
+    if sys.platform != "win32":
+        return None
+
+    user32 = ctypes.windll.user32
+    rect = ctypes.wintypes.RECT()
+    if not user32.GetWindowRect(hwnd, ctypes.byref(rect)):
+        return None
+
+    w = rect.right - rect.left
+    h = rect.bottom - rect.top
+    if w <= 0 or h <= 0:
+        return None
+
+    return grab_region((rect.left, rect.top, w, h))
+
+
+def get_window_bbox(hwnd: int) -> Optional[tuple[int, int, int, int]]:
+    """Return current (left, top, width, height) for a window handle."""
+    if sys.platform != "win32":
+        return None
+    user32 = ctypes.windll.user32
+    rect = ctypes.wintypes.RECT()
+    if not user32.GetWindowRect(hwnd, ctypes.byref(rect)):
+        return None
+    return (rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top)

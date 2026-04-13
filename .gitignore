@@ -1,3 +1,6 @@
+# Local Claude notes
+.claude.local.md
+
 # PokerLens: training data and models
 railbird/data/raw/
 railbird/data/augmented/

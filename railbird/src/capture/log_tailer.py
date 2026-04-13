@@ -88,10 +88,7 @@ class HandParser:
         m = self.re_action.match(line)
         if m:
             player_name = m.group(1).strip()
-            action_type = m.group(2).strip()
-            # Standardize action verbs
-            if action_type.endswith('s'):
-                action_type = action_type[:-1] # folds -> fold
+            action_type = m.group(2)[:-1]  # folds -> fold, checks -> check, etc.
                 
             self.current_hand.actions.append(
                 PlayerAction(
@@ -102,6 +99,9 @@ class HandParser:
             )
 
         return None
+
+
+_FILE_CHECK_INTERVAL = 10.0  # seconds between directory scans for a new file
 
 
 class LogTailer:
@@ -137,10 +137,15 @@ class LogTailer:
     def _tail_loop(self):
         current_file = None
         f = None
+        latest_file = None
+        last_file_check = 0.0
 
         while self._running:
-            latest_file = self._get_latest_file()
-            
+            now = time.time()
+            if now - last_file_check >= _FILE_CHECK_INTERVAL:
+                latest_file = self._get_latest_file()
+                last_file_check = now
+
             if latest_file and latest_file != current_file:
                 if f:
                     f.close()

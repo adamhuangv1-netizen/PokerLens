@@ -22,6 +22,8 @@ _DEFAULT_DB_PATH = os.path.join(
     os.path.dirname(__file__), "..", "..", "data", "pokerlens.db"
 )
 
+_MAX_PENDING = 1000
+
 
 @dataclass
 class HandRecord:
@@ -108,9 +110,19 @@ class PokerDB:
             )
             self._conn.commit()
 
-    def record_hand(self, record: HandRecord) -> None:
-        """Queue a hand for writing. Non-blocking."""
+    @property
+    def session_id(self) -> Optional[int]:
+        return self._session_id
+
+    def get_pending_count(self) -> int:
         with self._lock:
+            return len(self._pending)
+
+    def record_hand(self, record: HandRecord) -> None:
+        """Queue a hand for writing. Non-blocking. Drops oldest record if buffer is full."""
+        with self._lock:
+            if len(self._pending) >= _MAX_PENDING:
+                self._pending.pop(0)
             self._pending.append(record)
 
     def flush(self) -> None:

@@ -19,6 +19,7 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 from src.capture.pipeline import FrameResult
+from src.common.constants import SPECIAL_LABELS
 from src.tracking.database import HandRecord, PokerDB
 
 
@@ -35,11 +36,11 @@ class _HandState:
 
 
 def _count_known_board(board_labels: list[tuple[str, float]]) -> int:
-    return sum(1 for label, _ in board_labels if label not in ("empty", "back", "unknown"))
+    return sum(1 for label, _ in board_labels if label not in SPECIAL_LABELS)
 
 
 def _has_hero_cards(hero_labels: list[tuple[str, float]]) -> bool:
-    return any(label not in ("empty", "back", "unknown") for label, _ in hero_labels)
+    return any(label not in SPECIAL_LABELS for label, _ in hero_labels)
 
 
 def _street_from_count(n: int) -> str:
@@ -97,7 +98,7 @@ class HandTracker:
         board_raw = list(result.community_cards)
         board_count = _count_known_board(board_raw)
         has_hero = _has_hero_cards(hero_labels)
-        board_labels = [label for label, _ in board_raw if label not in ("empty", "back", "unknown")]
+        board_labels = [label for label, _ in board_raw if label not in SPECIAL_LABELS]
         current_street = _street_from_count(board_count)
 
         # --- Hand boundary detection ---
@@ -133,7 +134,7 @@ class HandTracker:
             # Determine active seat
             current_active_seat = None
             for key, (label, conf) in result.cards.items():
-                if "_active" in key and label not in ("empty", "back", "unknown"):
+                if "_active" in key and label not in SPECIAL_LABELS:
                     current_active_seat = key.split("_active")[0]
                     break
             
@@ -152,7 +153,7 @@ class HandTracker:
             # Track which seats still have visible cards per street
             for seat, card_keys in self._seats.items():
                 has_seat_cards = any(
-                    result.cards.get(k, ("empty", 0))[0] not in ("empty", "back", "unknown")
+                    result.cards.get(k, ("empty", 0))[0] not in SPECIAL_LABELS
                     for k in card_keys
                 )
                 if current_street == "flop" and board_count >= 3:
@@ -171,7 +172,7 @@ class HandTracker:
     def _commit_hand(self, state: _HandState) -> None:
         """Write a completed hand record to the database."""
         record = HandRecord(
-            session_id=self._db._session_id or 0,
+            session_id=self._db.session_id or 0,
             street_reached=state.street,
             board_cards=state.board_seen,
             seat_participation=state.seat_participation,
@@ -226,13 +227,17 @@ class HandTracker:
                 part["stayed_river"] = True
 
         record = HandRecord(
-            session_id=self._db._session_id or 0,
+            session_id=self._db.session_id or 0,
             street_reached="unknown",
             board_cards=[], 
             seat_participation=participation,
             timestamp=time.time(),
         )
         self._db.record_hand(record)
+
+    @property
+    def seat_names(self) -> list[str]:
+        return list(self._seats.keys())
 
     @property
     def current_street(self) -> str:

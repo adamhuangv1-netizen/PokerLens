@@ -15,6 +15,39 @@ import mss
 from src.capture.screenshot import grab_region
 
 
+def _enumerate_windows(user32, title_filter: Optional[str] = None) -> list[dict]:
+    """Return all visible windows with non-empty titles and positive dimensions.
+
+    Args:
+        title_filter: If provided, only windows whose title contains this string
+                      (case-insensitive) are returned.
+    """
+    results = []
+
+    def _callback(hwnd, _):
+        if not user32.IsWindowVisible(hwnd):
+            return True
+        length = user32.GetWindowTextLengthW(hwnd)
+        if length == 0:
+            return True
+        buf = ctypes.create_unicode_buffer(length + 1)
+        user32.GetWindowTextW(hwnd, buf, length + 1)
+        title = buf.value
+        if title_filter is not None and title_filter.lower() not in title.lower():
+            return True
+        rect = ctypes.wintypes.RECT()
+        user32.GetWindowRect(hwnd, ctypes.byref(rect))
+        w = rect.right - rect.left
+        h = rect.bottom - rect.top
+        if w > 0 and h > 0:
+            results.append({"hwnd": hwnd, "title": title, "bbox": (rect.left, rect.top, w, h)})
+        return True
+
+    EnumWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.wintypes.HWND, ctypes.wintypes.LPARAM)
+    user32.EnumWindows(EnumWindowsProc(_callback), 0)
+    return results
+
+
 def find_window(title_substring: str) -> Optional[dict]:
     """
     Find the first visible window whose title contains `title_substring` (case-insensitive).
@@ -25,34 +58,7 @@ def find_window(title_substring: str) -> Optional[dict]:
     """
     if sys.platform != "win32":
         raise RuntimeError("Window discovery is only supported on Windows.")
-
-    user32 = ctypes.windll.user32
-    results = []
-
-    def _enum_callback(hwnd, _):
-        if not user32.IsWindowVisible(hwnd):
-            return True
-        length = user32.GetWindowTextLengthW(hwnd)
-        if length == 0:
-            return True
-        buf = ctypes.create_unicode_buffer(length + 1)
-        user32.GetWindowTextW(hwnd, buf, length + 1)
-        title = buf.value
-        if title_substring.lower() in title.lower():
-            rect = ctypes.wintypes.RECT()
-            user32.GetWindowRect(hwnd, ctypes.byref(rect))
-            w = rect.right - rect.left
-            h = rect.bottom - rect.top
-            if w > 0 and h > 0:
-                results.append({
-                    "hwnd": hwnd,
-                    "title": title,
-                    "bbox": (rect.left, rect.top, w, h),
-                })
-        return True
-
-    EnumWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.wintypes.HWND, ctypes.wintypes.LPARAM)
-    user32.EnumWindows(EnumWindowsProc(_enum_callback), 0)
+    results = _enumerate_windows(ctypes.windll.user32, title_filter=title_substring)
     return results[0] if results else None
 
 
@@ -60,30 +66,7 @@ def list_windows() -> list[dict]:
     """Return all visible windows with non-empty titles."""
     if sys.platform != "win32":
         return []
-
-    user32 = ctypes.windll.user32
-    results = []
-
-    def _enum_callback(hwnd, _):
-        if not user32.IsWindowVisible(hwnd):
-            return True
-        length = user32.GetWindowTextLengthW(hwnd)
-        if length == 0:
-            return True
-        buf = ctypes.create_unicode_buffer(length + 1)
-        user32.GetWindowTextW(hwnd, buf, length + 1)
-        title = buf.value
-        rect = ctypes.wintypes.RECT()
-        user32.GetWindowRect(hwnd, ctypes.byref(rect))
-        w = rect.right - rect.left
-        h = rect.bottom - rect.top
-        if w > 0 and h > 0:
-            results.append({"hwnd": hwnd, "title": title, "bbox": (rect.left, rect.top, w, h)})
-        return True
-
-    EnumWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.wintypes.HWND, ctypes.wintypes.LPARAM)
-    user32.EnumWindows(EnumWindowsProc(_enum_callback), 0)
-    return results
+    return _enumerate_windows(ctypes.windll.user32)
 
 
 def capture_window(hwnd: int) -> Optional[np.ndarray]:

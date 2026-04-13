@@ -38,9 +38,12 @@ from src.engine.strategy import advise
 from src.overlay.widget import OverlayWindow
 from src.recognition.inference import CardRecognizer
 from src.tracking.database import PokerDB
+from src.common.constants import OVERLAY_HEIGHT
 from src.tracking.hand_tracker import HandTracker
 from src.tracking.stats import compute_all_stats
 from src.capture.log_tailer import LogTailer
+
+_STATS_TTL = 2.0
 
 
 class CaptureWorker(QObject):
@@ -129,6 +132,10 @@ class PokerLensApp:
         # --- Equity runs in a thread to avoid blocking GUI ---
         self._equity_thread_running = False
 
+        # --- Stats cache (recomputed at most every _STATS_TTL seconds) ---
+        self._stats_cache: dict = {}
+        self._stats_last_computed: float = 0.0
+
         # --- System tray ---
         self._tray = self._build_tray()
 
@@ -156,7 +163,7 @@ class PokerLensApp:
         ).start()
 
         # Flush DB periodically (non-blocking since it checks pending count)
-        if len(self._db._pending) >= 10:
+        if self._db.get_pending_count() >= 10:
             threading.Thread(target=self._db.flush, daemon=True).start()
 
     def _compute_and_update(
@@ -185,8 +192,12 @@ class PokerLensApp:
                 if self._debug:
                     print(f"Equity error: {e}")
                     
-        # Grab stats
-        all_stats = compute_all_stats(self._db, list({seat.rsplit("_card", 1)[0] for seat in self._hand_tracker._seats.keys()}))
+        # Grab stats — recompute at most every _STATS_TTL seconds
+        now = time.time()
+        if now - self._stats_last_computed > _STATS_TTL:
+            self._stats_cache = compute_all_stats(self._db, self._hand_tracker.seat_names)
+            self._stats_last_computed = now
+        all_stats = self._stats_cache
 
         total_ms = capture_ms + (time.perf_counter() - t0) * 1000
 
@@ -206,7 +217,7 @@ class PokerLensApp:
         info = find_window(self._profile.window_title)
         if info:
             bx, by, bw, bh = info["bbox"]
-            self._overlay.reposition(bx, by, bw, 70)
+            self._overlay.reposition(bx, by, bw, OVERLAY_HEIGHT)
 
     def _setup_hotkey(self) -> None:
         """Register F12 as a global hotkey to toggle overlay visibility."""

@@ -2,6 +2,8 @@
 QSS styles and color constants for the overlay.
 """
 
+from src.common.constants import EQUITY_STRONG, EQUITY_MEDIUM, EQUITY_MARGINAL
+
 # Semi-transparent black background (RGBA)
 PANEL_BG_COLOR = "rgba(20, 20, 20, 185)"
 PANEL_BORDER_RADIUS = "8px"
@@ -67,11 +69,11 @@ QLabel {{
 
 
 def equity_color(equity: float) -> str:
-    if equity >= 0.65:
+    if equity >= EQUITY_STRONG:
         return COLOR_STRONG
-    elif equity >= 0.50:
+    elif equity >= EQUITY_MEDIUM:
         return COLOR_MEDIUM
-    elif equity >= 0.35:
+    elif equity >= EQUITY_MARGINAL:
         return COLOR_MARGINAL
     else:
         return COLOR_WEAK

@@ -12,6 +12,7 @@ import random
 from dataclasses import dataclass
 from typing import Optional
 
+from src.common.constants import SPECIAL_LABELS, EQUITY_STRONG, EQUITY_MEDIUM, EQUITY_MARGINAL
 from src.engine.lookup import PreflopTable
 
 # Try fast C-backed evaluator first, fall back to treys
@@ -36,18 +37,18 @@ class EquityResult:
 
 
 def _classify_strength(equity: float) -> str:
-    if equity >= 0.65:
+    if equity >= EQUITY_STRONG:
         return "strong"
-    elif equity >= 0.50:
+    elif equity >= EQUITY_MEDIUM:
         return "medium"
-    elif equity >= 0.35:
+    elif equity >= EQUITY_MARGINAL:
         return "marginal"
     else:
         return "weak"
 
 
 def _street_from_board(board: list[str]) -> str:
-    n = len([c for c in board if c not in ("empty", "back", "unknown")])
+    n = sum(1 for c in board if c not in SPECIAL_LABELS)
     if n == 0:
         return "preflop"
     elif n == 3:
@@ -56,6 +57,38 @@ def _street_from_board(board: list[str]) -> str:
         return "turn"
     else:
         return "river"
+
+
+def _run_simulation_loop(
+    hero_cards,
+    board_cards,
+    deck: list,
+    num_opponents: int,
+    num_simulations: int,
+    eval_hand_fn,
+) -> float:
+    """Core Monte Carlo loop shared by both backends. Returns equity in [0, 1].
+
+    eval_hand_fn(hand, board) -> int, lower score is a better hand.
+    """
+    remaining_board = 5 - len(board_cards)
+    wins = ties = 0
+
+    for _ in range(num_simulations):
+        sample = random.sample(deck, remaining_board + num_opponents * 2)
+        run_board = board_cards + sample[:remaining_board]
+        opp_hands = [
+            sample[remaining_board + i * 2: remaining_board + i * 2 + 2]
+            for i in range(num_opponents)
+        ]
+        hero_val = eval_hand_fn(hero_cards, run_board)
+        best_opp = min(eval_hand_fn(h, run_board) for h in opp_hands)
+        if hero_val < best_opp:
+            wins += 1
+        elif hero_val == best_opp:
+            ties += 1
+
+    return (wins + ties * 0.5) / num_simulations
 
 
 # ---------------------------------------------------------------------------
@@ -70,36 +103,16 @@ def _monte_carlo_eval7(
 ) -> float:
     """Run Monte Carlo equity simulation using eval7."""
     hero_cards = [eval7.Card(c) for c in hero]
-    board_cards = [eval7.Card(c) for c in board if c not in ("empty", "back", "unknown")]
+    board_cards = [eval7.Card(c) for c in board if c not in SPECIAL_LABELS]
 
     known = set(hero_cards) | set(board_cards)
     deck = [c for c in eval7.Deck() if c not in known]
 
-    remaining_board = 5 - len(board_cards)
-    cards_per_opp = 2
-
-    wins = 0
-    ties = 0
-
-    for _ in range(num_simulations):
-        sample = random.sample(deck, remaining_board + num_opponents * cards_per_opp)
-        run_board = board_cards + sample[:remaining_board]
-        opp_hands = [
-            sample[remaining_board + i * 2: remaining_board + i * 2 + 2]
-            for i in range(num_opponents)
-        ]
-
-        hero_val = eval7.evaluate(hero_cards + run_board)
-        opp_vals = [eval7.evaluate(h + run_board) for h in opp_hands]
-
-        # eval7: lower value = better hand
-        best_opp = min(opp_vals)
-        if hero_val < best_opp:
-            wins += 1
-        elif hero_val == best_opp:
-            ties += 1
-
-    return (wins + ties * 0.5) / num_simulations
+    # eval7: lower value = better hand
+    return _run_simulation_loop(
+        hero_cards, board_cards, deck, num_opponents, num_simulations,
+        eval_hand_fn=lambda hand, run_board: eval7.evaluate(hand + run_board),
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -116,38 +129,20 @@ def _monte_carlo_treys(
     evaluator = Evaluator()
 
     def to_treys(label: str) -> int:
-        # treys format: 'Ah' -> 'Ah', '2c' -> '2c', but int representation
-        rank = label[0] if label[0] != "T" else "T"
-        suit = label[1]
-        return TreysCard.new(label[0] + suit)
+        return TreysCard.new(label[0] + label[1])
 
     hero_cards = [to_treys(c) for c in hero]
-    board_cards = [to_treys(c) for c in board if c not in ("empty", "back", "unknown")]
+    board_cards = [to_treys(c) for c in board if c not in SPECIAL_LABELS]
     known_set = set(hero_cards + board_cards)
 
-    all_cards = [TreysCard.new(r + s)
-                 for r in "23456789TJQKA" for s in "cdhs"]
+    all_cards = [TreysCard.new(r + s) for r in "23456789TJQKA" for s in "cdhs"]
     deck = [c for c in all_cards if c not in known_set]
 
-    remaining_board = 5 - len(board_cards)
-    wins = ties = 0
-
-    for _ in range(num_simulations):
-        sample = random.sample(deck, remaining_board + num_opponents * 2)
-        run_board = board_cards + sample[:remaining_board]
-        opp_hands = [sample[remaining_board + i * 2: remaining_board + i * 2 + 2]
-                     for i in range(num_opponents)]
-
-        hero_val = evaluator.evaluate(run_board, hero_cards)
-        opp_vals = [evaluator.evaluate(run_board, h) for h in opp_hands]
-        # treys: lower = better
-        best_opp = min(opp_vals)
-        if hero_val < best_opp:
-            wins += 1
-        elif hero_val == best_opp:
-            ties += 1
-
-    return (wins + ties * 0.5) / num_simulations
+    # treys: lower = better
+    return _run_simulation_loop(
+        hero_cards, board_cards, deck, num_opponents, num_simulations,
+        eval_hand_fn=lambda hand, run_board: evaluator.evaluate(run_board, hand),
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -199,12 +194,12 @@ class EquityCalculator:
         """
         if len(hero) != 2:
             return None
-        if any(c in ("unknown", "empty", "back") for c in hero):
+        if any(c in SPECIAL_LABELS for c in hero):
             return None
 
         num_opponents = max(1, min(9, num_opponents))
         street = _street_from_board(board)
-        known_board = [c for c in board if c not in ("empty", "back", "unknown")]
+        known_board = [c for c in board if c not in SPECIAL_LABELS]
 
         # Edge Case 2: Check for ML hallucinations (duplicate cards). Evaluators crash if duplicates exist.
         all_known = hero + known_board

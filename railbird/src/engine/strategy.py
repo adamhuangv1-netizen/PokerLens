@@ -10,6 +10,13 @@ from typing import Optional
 
 from src.engine.equity import EquityResult
 
+# Action recommendation thresholds — intentionally different from EQUITY_STRONG/MEDIUM/MARGINAL
+# (those classify hand strength; these drive bet/call/fold decisions and are more conservative)
+_RAISE_THRESHOLD     = 0.70
+_CALL_THRESHOLD      = 0.55
+_CHECK_CALL_THRESHOLD = 0.40
+_WEAK_THRESHOLD      = 0.25
+
 
 @dataclass
 class Advice:
@@ -53,18 +60,18 @@ def advise(result: EquityResult, pot_odds: Optional[float] = None) -> Advice:
             )
 
     # Equity-only thresholds
-    if eq >= 0.70:
+    if eq >= _RAISE_THRESHOLD:
         action = "Raise"
         rationale = f"Strong hand ({pct}% equity)"
         if hand_class:
             rationale = f"{hand_class} — {rationale}"
-    elif eq >= 0.55:
+    elif eq >= _CALL_THRESHOLD:
         action = "Call"
         rationale = f"Decent equity ({pct}%) — call or bet for value"
-    elif eq >= 0.40:
+    elif eq >= _CHECK_CALL_THRESHOLD:
         action = "Check/Call"
         rationale = f"Marginal ({pct}%) — need good pot odds to continue"
-    elif eq >= 0.25:
+    elif eq >= _WEAK_THRESHOLD:
         action = "Fold"
         rationale = f"Weak ({pct}%) — consider folding unless pot odds are good"
     else:

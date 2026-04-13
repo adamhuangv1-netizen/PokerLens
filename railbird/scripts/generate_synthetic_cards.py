@@ -20,11 +20,9 @@ import sys
 from PIL import Image, ImageDraw, ImageFont
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from src.common.constants import CARD_LABELS, RANKS, SUITS
+from src.common.constants import CARD_LABELS, RANKS, SUITS, SUIT_DISPLAY, RANK_DISPLAY
 
-SUIT_SYMBOLS = {"c": "♣", "d": "♦", "h": "♥", "s": "♠"}
-SUIT_COLORS  = {"c": (20, 20, 20), "d": (200, 20, 20), "h": (200, 20, 20), "s": (20, 20, 20)}
-RANK_DISPLAY = {"T": "10", "J": "J", "Q": "Q", "K": "K", "A": "A"}
+SUIT_COLORS = {"c": (20, 20, 20), "d": (200, 20, 20), "h": (200, 20, 20), "s": (20, 20, 20)}
 
 # Suit pip positions (relative to card size, for simple center pips)
 _PIP_GRIDS = {
@@ -114,7 +112,7 @@ def render_card(label: str, size: int = 64, variation: int = 0) -> Image.Image:
     # Normal card
     rank, suit = label[:-1], label[-1]
     color = SUIT_COLORS[suit]
-    sym = SUIT_SYMBOLS[suit]
+    sym = SUIT_DISPLAY[suit]
     display_rank = RANK_DISPLAY.get(rank, rank)
 
     font_corner = _try_load_font(max(8, size // 6))

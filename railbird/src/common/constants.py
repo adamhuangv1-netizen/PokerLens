@@ -31,9 +31,24 @@ SUIT_DISPLAY = {"c": "♣", "d": "♦", "h": "♥", "s": "♠"}
 SUIT_COLOR = {"c": "#000000", "d": "#cc0000", "h": "#cc0000", "s": "#000000"}
 
 
+# Special/non-card labels indicating no card or unknown state
+SPECIAL_LABELS: frozenset[str] = frozenset({"empty", "back", "unknown"})
+
+# Equity strength thresholds — shared by hand strength classification and HUD coloring
+EQUITY_STRONG: float = 0.65
+EQUITY_MEDIUM: float = 0.50
+EQUITY_MARGINAL: float = 0.35
+
+# Overlay bar height in pixels
+OVERLAY_HEIGHT: int = 70
+
+# Street names in order
+STREETS: tuple[str, ...] = ("preflop", "flop", "turn", "river")
+
+
 def label_to_display(label: str) -> str:
     """Convert label like 'Ah' to display string like 'A♥'."""
-    if label in ("empty", "back", "unknown"):
+    if label in SPECIAL_LABELS:
         return label.capitalize()
     rank, suit = label[:-1], label[-1]
     return f"{RANK_DISPLAY[rank]}{SUIT_DISPLAY[suit]}"

@@ -61,7 +61,6 @@ class Calibrator:
         self._win_h = win_h
         self._regions: list[RegionDef] = []
 
-        # Mouse state
         self._drawing = False
         self._pt1: Optional[tuple[int, int]] = None
         self._pt2: Optional[tuple[int, int]] = None

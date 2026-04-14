@@ -124,3 +124,9 @@ celerybeat-schedule
 celerybeat.pid
 *.sage.py
 /site
+
+# Obsidian vault — workspace state (changes on every launch, do not commit)
+docs/obsidian/.obsidian/workspace.json
+docs/obsidian/.obsidian/workspace-mobile.json
+# Obsidian plugin binaries (install via Obsidian community plugin browser)
+docs/obsidian/.obsidian/plugins/

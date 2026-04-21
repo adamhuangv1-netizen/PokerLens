@@ -1,0 +1,4216 @@
+{
+  "nodes": [
+    {
+      "id": "g0",
+      "type": "group",
+      "label": "Architecture Decisions & Core Concepts",
+      "x": 0,
+      "y": 0,
+      "width": 1540,
+      "height": 1520,
+      "color": "1"
+    },
+    {
+      "id": "n_concept_cnn_54class",
+      "type": "file",
+      "file": "graphify/obsidian/54-Class CNN Card Classifier.md",
+      "x": 20,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_adr_001_cnn_vs_yolo",
+      "type": "file",
+      "file": "graphify/obsidian/ADR 001 CNN vs YOLO for Card Recognition.md",
+      "x": 220,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_concept_adr",
+      "type": "file",
+      "file": "graphify/obsidian/Architecture Decision Record (ADR).md",
+      "x": 420,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_module_capture",
+      "type": "file",
+      "file": "graphify/obsidian/Capture Module.md",
+      "x": 20,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ref_dependencies",
+      "type": "file",
+      "file": "graphify/obsidian/Dependencies Reference.md",
+      "x": 220,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_module_engine",
+      "type": "file",
+      "file": "graphify/obsidian/Engine Module.md",
+      "x": 420,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_concept_equity_calculator",
+      "type": "file",
+      "file": "graphify/obsidian/EquityCalculator_1.md",
+      "x": 20,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_concept_equity_result",
+      "type": "file",
+      "file": "graphify/obsidian/EquityResult Output Type.md",
+      "x": 220,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_ref_glossary",
+      "type": "file",
+      "file": "graphify/obsidian/Glossary Reference.md",
+      "x": 420,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_concept_hand_state_machine",
+      "type": "file",
+      "file": "graphify/obsidian/Hand Tracker State Machine.md",
+      "x": 20,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_concept_hud",
+      "type": "file",
+      "file": "graphify/obsidian/Heads-Up Display (HUD).md",
+      "x": 220,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_milestone_m1",
+      "type": "file",
+      "file": "graphify/obsidian/M1 Working Card Recognition.md",
+      "x": 420,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_milestone_m2",
+      "type": "file",
+      "file": "graphify/obsidian/M2 First Working HUD.md",
+      "x": 20,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_milestone_m3",
+      "type": "file",
+      "file": "graphify/obsidian/M3 Stats Tracking.md",
+      "x": 220,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_milestone_m4",
+      "type": "file",
+      "file": "graphify/obsidian/M4 Polish.md",
+      "x": 420,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_concept_monte_carlo",
+      "type": "file",
+      "file": "graphify/obsidian/Monte Carlo Equity Simulation.md",
+      "x": 20,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_spec_obsidian_vault",
+      "type": "file",
+      "file": "graphify/obsidian/Obsidian Vault Design Spec.md",
+      "x": 220,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_plan_obsidian_vault",
+      "type": "file",
+      "file": "graphify/obsidian/Obsidian Vault Implementation Plan.md",
+      "x": 420,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_module_overlay",
+      "type": "file",
+      "file": "graphify/obsidian/Overlay Module.md",
+      "x": 20,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dep_pillow",
+      "type": "file",
+      "file": "graphify/obsidian/Pillow.md",
+      "x": 220,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_home_pokerlens_kb",
+      "type": "file",
+      "file": "graphify/obsidian/PokerLens Knowledge Base Home Dashboard.md",
+      "x": 420,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_overview_system",
+      "type": "file",
+      "file": "graphify/obsidian/PokerLens System Overview.md",
+      "x": 20,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_concept_preflop_lookup",
+      "type": "file",
+      "file": "graphify/obsidian/PreflopTable Lookup (preflop_equity.json).md",
+      "x": 220,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_roadmap_backlog",
+      "type": "file",
+      "file": "graphify/obsidian/Project Backlog.md",
+      "x": 420,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_roadmap_milestones",
+      "type": "file",
+      "file": "graphify/obsidian/Project Milestones.md",
+      "x": 20,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dep_pyqt6",
+      "type": "file",
+      "file": "graphify/obsidian/PyQt6.md",
+      "x": 220,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_rationale_cnn_over_yolo",
+      "type": "file",
+      "file": "graphify/obsidian/Rationale CNN chosen over YOLO (simpler pipeline, no bbox labels).md",
+      "x": 420,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_rationale_type_based_folders",
+      "type": "file",
+      "file": "graphify/obsidian/Rationale Type-based top-level folders with module tags for cross-cutting.md",
+      "x": 20,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_rationale_vault_in_repo",
+      "type": "file",
+      "file": "graphify/obsidian/Rationale Vault committed to git for AI agent access and history.md",
+      "x": 220,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_module_recognition",
+      "type": "file",
+      "file": "graphify/obsidian/Recognition Module.md",
+      "x": 420,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_concept_sqlite_db",
+      "type": "file",
+      "file": "graphify/obsidian/SQLite Hand History Database.md",
+      "x": 20,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_module_tracking",
+      "type": "file",
+      "file": "graphify/obsidian/Tracking Module.md",
+      "x": 220,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_concept_vpip_pfr",
+      "type": "file",
+      "file": "graphify/obsidian/VPIP  PFR Player Stats.md",
+      "x": 420,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_concept_yolo",
+      "type": "file",
+      "file": "graphify/obsidian/YOLO Object Detection (rejected alternative).md",
+      "x": 20,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dep_eval7",
+      "type": "file",
+      "file": "graphify/obsidian/eval7 (C-backed hand evaluator).md",
+      "x": 220,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dep_mss",
+      "type": "file",
+      "file": "graphify/obsidian/mss (screen capture library).md",
+      "x": 420,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dep_onnxruntime",
+      "type": "file",
+      "file": "graphify/obsidian/onnxruntime.md",
+      "x": 20,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dep_opencv",
+      "type": "file",
+      "file": "graphify/obsidian/opencv-python.md",
+      "x": 220,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dep_pygetwindow",
+      "type": "file",
+      "file": "graphify/obsidian/pygetwindow.md",
+      "x": 420,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dep_torch",
+      "type": "file",
+      "file": "graphify/obsidian/torch  torchvision.md",
+      "x": 20,
+      "y": 1120,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dep_treys",
+      "type": "file",
+      "file": "graphify/obsidian/treys (fallback hand evaluator).md",
+      "x": 220,
+      "y": 1120,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g1",
+      "type": "group",
+      "label": "Hand History Database",
+      "x": 1620,
+      "y": 0,
+      "width": 1540,
+      "height": 1520,
+      "color": "2"
+    },
+    {
+      "id": "n_database_pokerdb_init",
+      "type": "file",
+      "file": "graphify/obsidian/.__init__()_13.md",
+      "x": 1640,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_handtracker_init",
+      "type": "file",
+      "file": "graphify/obsidian/.__init__()_14.md",
+      "x": 1840,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_handtracker_commit_hand",
+      "type": "file",
+      "file": "graphify/obsidian/._commit_hand().md",
+      "x": 2040,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_pokerdb_create_schema",
+      "type": "file",
+      "file": "graphify/obsidian/._create_schema().md",
+      "x": 1640,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_pokerdb_close",
+      "type": "file",
+      "file": "graphify/obsidian/.close().md",
+      "x": 1840,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_pokerdb_end_session",
+      "type": "file",
+      "file": "graphify/obsidian/.end_session().md",
+      "x": 2040,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_pokerdb_flush",
+      "type": "file",
+      "file": "graphify/obsidian/.flush().md",
+      "x": 1640,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_pokerdb_get_pending_count",
+      "type": "file",
+      "file": "graphify/obsidian/.get_pending_count().md",
+      "x": 1840,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_pokerdb_get_total_hands",
+      "type": "file",
+      "file": "graphify/obsidian/.get_total_hands().md",
+      "x": 2040,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_handtracker_on_parsed_hand",
+      "type": "file",
+      "file": "graphify/obsidian/.on_parsed_hand().md",
+      "x": 1640,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_pokerdb_record_hand",
+      "type": "file",
+      "file": "graphify/obsidian/.record_hand().md",
+      "x": 1840,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_pokerdb_start_session",
+      "type": "file",
+      "file": "graphify/obsidian/.start_session().md",
+      "x": 2040,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_handtracker_update",
+      "type": "file",
+      "file": "graphify/obsidian/.update().md",
+      "x": 1640,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_rationale_64",
+      "type": "file",
+      "file": "graphify/obsidian/Args             db        PokerDB instance for recording completed hands..md",
+      "x": 1840,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_rationale_184",
+      "type": "file",
+      "file": "graphify/obsidian/Called by LogTailer when a text-hand is completed..md",
+      "x": 2040,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_frameresult",
+      "type": "file",
+      "file": "graphify/obsidian/FrameResult.md",
+      "x": 1640,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_rationale_78",
+      "type": "file",
+      "file": "graphify/obsidian/Group card keys by seat name. seat_1_card_1, seat_1_card_2 - seat_1 ....md",
+      "x": 1840,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_handrecord",
+      "type": "file",
+      "file": "graphify/obsidian/HandRecord.md",
+      "x": 2040,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_handtracker",
+      "type": "file",
+      "file": "graphify/obsidian/HandTracker.md",
+      "x": 1640,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/HandTracker \u2014 state machine that infers hand progression from card visibility..md",
+      "x": 1840,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_rationale_28",
+      "type": "file",
+      "file": "graphify/obsidian/Mutable state for the current in-progress hand..md",
+      "x": 2040,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_pokerdb",
+      "type": "file",
+      "file": "graphify/obsidian/PokerDB.md",
+      "x": 1640,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_rationale_89",
+      "type": "file",
+      "file": "graphify/obsidian/Process a new FrameResult. Call once per capture cycle.         Automatically re.md",
+      "x": 1840,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_rationale_58",
+      "type": "file",
+      "file": "graphify/obsidian/Processes FrameResults and maintains hand state.     Records completed hands to.md",
+      "x": 2040,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_rationale_122",
+      "type": "file",
+      "file": "graphify/obsidian/Queue a hand for writing. Non-blocking. Drops oldest record if buffer is full..md",
+      "x": 1640,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/SQLite persistence layer for hand history and opponent stats.  Schema   session.md",
+      "x": 1840,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_rationale_38",
+      "type": "file",
+      "file": "graphify/obsidian/Thread-safe SQLite database for hand history.      Writes are buffered in memory.md",
+      "x": 2040,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_rationale_173",
+      "type": "file",
+      "file": "graphify/obsidian/Write a completed hand record to the database..md",
+      "x": 1640,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_rationale_129",
+      "type": "file",
+      "file": "graphify/obsidian/Write all pending hand records to the database..md",
+      "x": 1840,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_handstate",
+      "type": "file",
+      "file": "graphify/obsidian/_HandState.md",
+      "x": 2040,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_count_known_board",
+      "type": "file",
+      "file": "graphify/obsidian/_count_known_board().md",
+      "x": 1640,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_has_hero_cards",
+      "type": "file",
+      "file": "graphify/obsidian/_has_hero_cards().md",
+      "x": 1840,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_parse_seats",
+      "type": "file",
+      "file": "graphify/obsidian/_parse_seats().md",
+      "x": 2040,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_street_from_count",
+      "type": "file",
+      "file": "graphify/obsidian/_street_from_count().md",
+      "x": 1640,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_current_street",
+      "type": "file",
+      "file": "graphify/obsidian/current_street().md",
+      "x": 1840,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_tracking_database_py",
+      "type": "file",
+      "file": "graphify/obsidian/database.py.md",
+      "x": 2040,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_tracking_hand_tracker_py",
+      "type": "file",
+      "file": "graphify/obsidian/hand_tracker.py.md",
+      "x": 1640,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_in_hand",
+      "type": "file",
+      "file": "graphify/obsidian/in_hand().md",
+      "x": 1840,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hand_tracker_seat_names",
+      "type": "file",
+      "file": "graphify/obsidian/seat_names().md",
+      "x": 2040,
+      "y": 1040,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_session_id",
+      "type": "file",
+      "file": "graphify/obsidian/session_id().md",
+      "x": 1640,
+      "y": 1120,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g2",
+      "type": "group",
+      "label": "Card Recognition Inference",
+      "x": 3240,
+      "y": 0,
+      "width": 1320,
+      "height": 1320,
+      "color": "3"
+    },
+    {
+      "id": "n_inference_cardrecognizer_init",
+      "type": "file",
+      "file": "graphify/obsidian/.__init__()_11.md",
+      "x": 3260,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_captureloop_init",
+      "type": "file",
+      "file": "graphify/obsidian/.__init__()_3.md",
+      "x": 3460,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_captureloop_ensure_window",
+      "type": "file",
+      "file": "graphify/obsidian/._ensure_window().md",
+      "x": 3660,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_cardrecognizer_load_norm_stats",
+      "type": "file",
+      "file": "graphify/obsidian/._load_norm_stats().md",
+      "x": 3260,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_cardrecognizer_preprocess",
+      "type": "file",
+      "file": "graphify/obsidian/._preprocess().md",
+      "x": 3460,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_cardrecognizer_preprocess_batch",
+      "type": "file",
+      "file": "graphify/obsidian/._preprocess_batch().md",
+      "x": 3660,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_frameresult_known_labels",
+      "type": "file",
+      "file": "graphify/obsidian/.known_labels().md",
+      "x": 3260,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_cardrecognizer_predict",
+      "type": "file",
+      "file": "graphify/obsidian/.predict().md",
+      "x": 3460,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_cardrecognizer_predict_batch",
+      "type": "file",
+      "file": "graphify/obsidian/.predict_batch().md",
+      "x": 3660,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_captureloop_run_forever",
+      "type": "file",
+      "file": "graphify/obsidian/.run_forever().md",
+      "x": 3260,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_captureloop_run_once",
+      "type": "file",
+      "file": "graphify/obsidian/.run_once().md",
+      "x": 3460,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_captureloop_stop",
+      "type": "file",
+      "file": "graphify/obsidian/.stop()_1.md",
+      "x": 3660,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_rationale_77",
+      "type": "file",
+      "file": "graphify/obsidian/BGR uint8 - normalized float32 tensor (1, 3, 64, 64)..md",
+      "x": 3260,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_captureloop",
+      "type": "file",
+      "file": "graphify/obsidian/CaptureLoop.md",
+      "x": 3460,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/CaptureLoop \u2014 the hot path that runs every frame.  Capture - Crop - Classify -.md",
+      "x": 3660,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_cardrecognizer",
+      "type": "file",
+      "file": "graphify/obsidian/CardRecognizer.md",
+      "x": 3260,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_rationale_92",
+      "type": "file",
+      "file": "graphify/obsidian/Classify a single card image.          Args             image BGR numpy array.md",
+      "x": 3460,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_rationale_114",
+      "type": "file",
+      "file": "graphify/obsidian/Classify multiple card images in one forward pass.          Args             im.md",
+      "x": 3660,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_rationale_82",
+      "type": "file",
+      "file": "graphify/obsidian/Execute one capture-crop-classify cycle.          Returns a FrameResult. If the.md",
+      "x": 3260,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_rationale_67",
+      "type": "file",
+      "file": "graphify/obsidian/Find the poker window if we don't have a handle yet. Returns True if found..md",
+      "x": 3460,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_rationale_29",
+      "type": "file",
+      "file": "graphify/obsidian/Loads an ONNX card classifier and provides fast CPU inference.      Usage.md",
+      "x": 3660,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/ONNX Runtime inference wrapper for card classification.  Provides CardRecognizer.md",
+      "x": 3260,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_rationale_22",
+      "type": "file",
+      "file": "graphify/obsidian/Output of one capture cycle..md",
+      "x": 3460,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_rationale_88",
+      "type": "file",
+      "file": "graphify/obsidian/Preprocess a list of BGR images into a batched tensor..md",
+      "x": 3660,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_rationale_154",
+      "type": "file",
+      "file": "graphify/obsidian/Print inference latency stats over n random images..md",
+      "x": 3260,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_rationale_38",
+      "type": "file",
+      "file": "graphify/obsidian/Return only regions with confident, non-empty, non-unknown labels..md",
+      "x": 3460,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_rationale_135",
+      "type": "file",
+      "file": "graphify/obsidian/Run in a loop, calling run_once() and sleeping to maintain interval_ms cadence..md",
+      "x": 3660,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_rationale_44",
+      "type": "file",
+      "file": "graphify/obsidian/Runs capture - crop - classify for one poker table profile.      Can be called.md",
+      "x": 3260,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_softmax",
+      "type": "file",
+      "file": "graphify/obsidian/_softmax().md",
+      "x": 3460,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_benchmark",
+      "type": "file",
+      "file": "graphify/obsidian/benchmark().md",
+      "x": 3660,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_community_cards",
+      "type": "file",
+      "file": "graphify/obsidian/community_cards().md",
+      "x": 3260,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_inference_confidence_threshold",
+      "type": "file",
+      "file": "graphify/obsidian/confidence_threshold().md",
+      "x": 3460,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_pipeline_hero_cards",
+      "type": "file",
+      "file": "graphify/obsidian/hero_cards().md",
+      "x": 3660,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_recognition_inference_py",
+      "type": "file",
+      "file": "graphify/obsidian/inference.py.md",
+      "x": 3260,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_capture_pipeline_py",
+      "type": "file",
+      "file": "graphify/obsidian/pipeline.py.md",
+      "x": 3460,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g3",
+      "type": "group",
+      "label": "HUD Display Layer",
+      "x": 4640,
+      "y": 0,
+      "width": 1320,
+      "height": 1320,
+      "color": "4"
+    },
+    {
+      "id": "n_hud_hudpanel_init",
+      "type": "file",
+      "file": "graphify/obsidian/.__init__()_6.md",
+      "x": 4660,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_widget_overlaywindow_init",
+      "type": "file",
+      "file": "graphify/obsidian/.__init__()_8.md",
+      "x": 4860,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hud_hudpanel_build_ui",
+      "type": "file",
+      "file": "graphify/obsidian/._build_ui().md",
+      "x": 5060,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_widget_overlaywindow_reposition",
+      "type": "file",
+      "file": "graphify/obsidian/.reposition().md",
+      "x": 4660,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_widget_overlaywindow_toggle_visible",
+      "type": "file",
+      "file": "graphify/obsidian/.toggle_visible().md",
+      "x": 4860,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hud_hudpanel_update_display",
+      "type": "file",
+      "file": "graphify/obsidian/.update_display().md",
+      "x": 5060,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_widget_overlaywindow_update_display",
+      "type": "file",
+      "file": "graphify/obsidian/.update_display()_1.md",
+      "x": 4660,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_strategy_advice",
+      "type": "file",
+      "file": "graphify/obsidian/Advice.md",
+      "x": 4860,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hud_rationale_40",
+      "type": "file",
+      "file": "graphify/obsidian/Compact HUD bar showing equity and strategic advice.     Designed to be placed a.md",
+      "x": 5060,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_equity_equityresult",
+      "type": "file",
+      "file": "graphify/obsidian/EquityResult.md",
+      "x": 4660,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hud_rationale_30",
+      "type": "file",
+      "file": "graphify/obsidian/Format a card label as colored HTML text..md",
+      "x": 4860,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_strategy_rationale_29",
+      "type": "file",
+      "file": "graphify/obsidian/Generate a strategic recommendation from an EquityResult.      Args         res.md",
+      "x": 5060,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hud_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/HUD panel \u2014 the main info display shown on the overlay.  Shows   - Hero hole ca.md",
+      "x": 4660,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hud_hudpanel",
+      "type": "file",
+      "file": "graphify/obsidian/HudPanel.md",
+      "x": 4860,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_widget_rationale_143",
+      "type": "file",
+      "file": "graphify/obsidian/Move and resize the overlay window..md",
+      "x": 5060,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_widget_overlaywindow",
+      "type": "file",
+      "file": "graphify/obsidian/OverlayWindow.md",
+      "x": 4660,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_widget_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/OverlayWindow \u2014 the transparent, always-on-top, click-through PyQt6 window.  Key.md",
+      "x": 4860,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_qlabel",
+      "type": "file",
+      "file": "graphify/obsidian/QLabel.md",
+      "x": 5060,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_styles_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/QSS styles and color constants for the overlay..md",
+      "x": 4660,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_qwidget",
+      "type": "file",
+      "file": "graphify/obsidian/QWidget.md",
+      "x": 4860,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_strategy_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/Strategy advisor \u2014 converts equity into actionable recommendations.  In v1, advi.md",
+      "x": 5060,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_cropper_tableprofile",
+      "type": "file",
+      "file": "graphify/obsidian/TableProfile.md",
+      "x": 4660,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_widget_rationale_23",
+      "type": "file",
+      "file": "graphify/obsidian/Transparent overlay window displaying the HUD.      Must run on the main GUI thr.md",
+      "x": 4860,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hud_rationale_107",
+      "type": "file",
+      "file": "graphify/obsidian/Update all HUD elements. Call from the main GUI thread only..md",
+      "x": 5060,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_widget_rationale_129",
+      "type": "file",
+      "file": "graphify/obsidian/Update the HUD. Safe to call from any thread (uses Qt signal)..md",
+      "x": 4660,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_hud_card_html",
+      "type": "file",
+      "file": "graphify/obsidian/_card_html().md",
+      "x": 4860,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_widget_on_display_update",
+      "type": "file",
+      "file": "graphify/obsidian/_on_display_update().md",
+      "x": 5060,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_strategy_advise",
+      "type": "file",
+      "file": "graphify/obsidian/advise().md",
+      "x": 4660,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_styles_equity_color",
+      "type": "file",
+      "file": "graphify/obsidian/equity_color().md",
+      "x": 4860,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_overlay_hud_py",
+      "type": "file",
+      "file": "graphify/obsidian/hud.py.md",
+      "x": 5060,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_engine_strategy_py",
+      "type": "file",
+      "file": "graphify/obsidian/strategy.py.md",
+      "x": 4660,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_overlay_styles_py",
+      "type": "file",
+      "file": "graphify/obsidian/styles.py.md",
+      "x": 4860,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_styles_suit_color",
+      "type": "file",
+      "file": "graphify/obsidian/suit_color().md",
+      "x": 5060,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_overlay_widget_py",
+      "type": "file",
+      "file": "graphify/obsidian/widget.py.md",
+      "x": 4660,
+      "y": 960,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g4",
+      "type": "group",
+      "label": "Preflop Constants & Equity",
+      "x": 6040,
+      "y": 0,
+      "width": 1320,
+      "height": 1220,
+      "color": "5"
+    },
+    {
+      "id": "n_equity_equitycalculator_init",
+      "type": "file",
+      "file": "graphify/obsidian/.__init__()_4.md",
+      "x": 6060,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_lookup_prefloptable_init",
+      "type": "file",
+      "file": "graphify/obsidian/.__init__()_5.md",
+      "x": 6260,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_equity_equitycalculator_monte_carlo",
+      "type": "file",
+      "file": "graphify/obsidian/._monte_carlo().md",
+      "x": 6460,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_equity_equitycalculator_preflop_equity",
+      "type": "file",
+      "file": "graphify/obsidian/._preflop_equity().md",
+      "x": 6060,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_equity_equitycalculator_calculate",
+      "type": "file",
+      "file": "graphify/obsidian/.calculate().md",
+      "x": 6260,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_lookup_prefloptable_get_equity",
+      "type": "file",
+      "file": "graphify/obsidian/.get_equity().md",
+      "x": 6460,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_lookup_prefloptable_hand_class",
+      "type": "file",
+      "file": "graphify/obsidian/.hand_class().md",
+      "x": 6060,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_equity_rationale_184",
+      "type": "file",
+      "file": "graphify/obsidian/Calculate equity.          Args             hero          List of 2 card label.md",
+      "x": 6260,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_equity_rationale_153",
+      "type": "file",
+      "file": "graphify/obsidian/Calculates hero equity given hole cards, board, and opponent count.      Uses pr.md",
+      "x": 6460,
+      "y": 240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_constants_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/Canonical card label definitions shared across the entire codebase.  54 classes.md",
+      "x": 6060,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_constants_rationale_50",
+      "type": "file",
+      "file": "graphify/obsidian/Convert label like 'Ah' to display string like 'A\u2665'..md",
+      "x": 6260,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_constants_rationale_58",
+      "type": "file",
+      "file": "graphify/obsidian/Convert two hole cards to a canonical pre-flop hand class string.     e.g. ('Ah'.md",
+      "x": 6460,
+      "y": 320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_equity_rationale_70",
+      "type": "file",
+      "file": "graphify/obsidian/Core Monte Carlo loop shared by both backends. Returns equity in 0, 1.      ev.md",
+      "x": 6060,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_equity_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/Equity calculator.  Strategy   - Pre-flop (no board) Use PreflopTable lookup (.md",
+      "x": 6260,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_equity_equitycalculator",
+      "type": "file",
+      "file": "graphify/obsidian/EquityCalculator.md",
+      "x": 6460,
+      "y": 400,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_lookup_rationale_29",
+      "type": "file",
+      "file": "graphify/obsidian/Fast pre-flop equity lookup by hand class and opponent count..md",
+      "x": 6060,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_lookup_rationale_41",
+      "type": "file",
+      "file": "graphify/obsidian/Look up pre-flop equity for hole cards against num_opponents random hands..md",
+      "x": 6260,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_lookup_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/Pre-flop equity lookup table.  Maps the 169 canonical starting hand classes to e.md",
+      "x": 6460,
+      "y": 480,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_lookup_prefloptable",
+      "type": "file",
+      "file": "graphify/obsidian/PreflopTable.md",
+      "x": 6060,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_lookup_rationale_63",
+      "type": "file",
+      "file": "graphify/obsidian/Return canonical hand class string, e.g. 'AKs', 'TT', '72o'..md",
+      "x": 6260,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_equity_rationale_104",
+      "type": "file",
+      "file": "graphify/obsidian/Run Monte Carlo equity simulation using eval7..md",
+      "x": 6460,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_equity_classify_strength",
+      "type": "file",
+      "file": "graphify/obsidian/_classify_strength().md",
+      "x": 6060,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_equity_monte_carlo_eval7",
+      "type": "file",
+      "file": "graphify/obsidian/_monte_carlo_eval7().md",
+      "x": 6260,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_equity_monte_carlo_treys",
+      "type": "file",
+      "file": "graphify/obsidian/_monte_carlo_treys().md",
+      "x": 6460,
+      "y": 640,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_equity_run_simulation_loop",
+      "type": "file",
+      "file": "graphify/obsidian/_run_simulation_loop().md",
+      "x": 6060,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_equity_street_from_board",
+      "type": "file",
+      "file": "graphify/obsidian/_street_from_board().md",
+      "x": 6260,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_constants_canonicalize_preflop",
+      "type": "file",
+      "file": "graphify/obsidian/canonicalize_preflop().md",
+      "x": 6460,
+      "y": 720,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_common_constants_py",
+      "type": "file",
+      "file": "graphify/obsidian/constants.py.md",
+      "x": 6060,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_engine_equity_py",
+      "type": "file",
+      "file": "graphify/obsidian/equity.py.md",
+      "x": 6260,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_constants_label_to_display",
+      "type": "file",
+      "file": "graphify/obsidian/label_to_display().md",
+      "x": 6460,
+      "y": 800,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_engine_lookup_py",
+      "type": "file",
+      "file": "graphify/obsidian/lookup.py.md",
+      "x": 6060,
+      "y": 880,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g5",
+      "type": "group",
+      "label": "Table Calibration",
+      "x": 0,
+      "y": 1600,
+      "width": 1100,
+      "height": 1020,
+      "color": "6"
+    },
+    {
+      "id": "n_calibrator_calibrator_init",
+      "type": "file",
+      "file": "graphify/obsidian/.__init__().md",
+      "x": 20,
+      "y": 1680,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_calibrator_calibrator_draw_overlay",
+      "type": "file",
+      "file": "graphify/obsidian/._draw_overlay().md",
+      "x": 220,
+      "y": 1680,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_calibrator_calibrator_mouse_callback",
+      "type": "file",
+      "file": "graphify/obsidian/._mouse_callback().md",
+      "x": 420,
+      "y": 1680,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_cropper_tableprofile_all_card_regions",
+      "type": "file",
+      "file": "graphify/obsidian/.all_card_regions().md",
+      "x": 20,
+      "y": 1760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_calibrator_calibrator_run",
+      "type": "file",
+      "file": "graphify/obsidian/.run().md",
+      "x": 220,
+      "y": 1760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_cropper_tableprofile_to_dict",
+      "type": "file",
+      "file": "graphify/obsidian/.to_dict().md",
+      "x": 420,
+      "y": 1760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_cropper_regiondef_to_pixels",
+      "type": "file",
+      "file": "graphify/obsidian/.to_pixels().md",
+      "x": 20,
+      "y": 1840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_cropper_rationale_66",
+      "type": "file",
+      "file": "graphify/obsidian/All regions that produce card images (hero + community + opponents)..md",
+      "x": 220,
+      "y": 1840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_calibrator_calibrator",
+      "type": "file",
+      "file": "graphify/obsidian/Calibrator.md",
+      "x": 420,
+      "y": 1840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_calibrator_rationale_171",
+      "type": "file",
+      "file": "graphify/obsidian/Capture the poker window and run the calibration UI.      Returns a saved TableP.md",
+      "x": 20,
+      "y": 1920,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_cropper_rationale_46",
+      "type": "file",
+      "file": "graphify/obsidian/Convert percentage-based region to absolute pixel bbox (x, y, w, h)..md",
+      "x": 220,
+      "y": 1920,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_cropper_rationale_108",
+      "type": "file",
+      "file": "graphify/obsidian/Crop all card regions from a frame captured at the window's current size.      A.md",
+      "x": 420,
+      "y": 1920,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_calibrator_rationale_56",
+      "type": "file",
+      "file": "graphify/obsidian/Interactive region selection tool using an OpenCV window..md",
+      "x": 20,
+      "y": 2000,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_cropper_regiondef",
+      "type": "file",
+      "file": "graphify/obsidian/RegionDef.md",
+      "x": 220,
+      "y": 2000,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_calibrator_rationale_116",
+      "type": "file",
+      "file": "graphify/obsidian/Run the calibration UI for the given sequence.          Returns list of RegionDe.md",
+      "x": 420,
+      "y": 2000,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_calibrator_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/Table calibration tool.  Presents a screenshot of the poker window and guides th.md",
+      "x": 20,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_cropper_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/TableProfile \u2014 stores cardcommunityseat region definitions for a poker client..md",
+      "x": 220,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_calibrator_pct",
+      "type": "file",
+      "file": "graphify/obsidian/_pct().md",
+      "x": 420,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_capture_calibrator_py",
+      "type": "file",
+      "file": "graphify/obsidian/calibrator.py.md",
+      "x": 20,
+      "y": 2160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_cropper_crop_regions",
+      "type": "file",
+      "file": "graphify/obsidian/crop_regions().md",
+      "x": 220,
+      "y": 2160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_capture_cropper_py",
+      "type": "file",
+      "file": "graphify/obsidian/cropper.py.md",
+      "x": 420,
+      "y": 2160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_cropper_from_dict",
+      "type": "file",
+      "file": "graphify/obsidian/from_dict().md",
+      "x": 20,
+      "y": 2240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_cropper_load_profile",
+      "type": "file",
+      "file": "graphify/obsidian/load_profile().md",
+      "x": 220,
+      "y": 2240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_calibrator_run_calibration",
+      "type": "file",
+      "file": "graphify/obsidian/run_calibration().md",
+      "x": 420,
+      "y": 2240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_cropper_save_profile",
+      "type": "file",
+      "file": "graphify/obsidian/save_profile().md",
+      "x": 20,
+      "y": 2320,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g6",
+      "type": "group",
+      "label": "CNN Training Dataset",
+      "x": 1620,
+      "y": 1600,
+      "width": 1100,
+      "height": 920,
+      "color": "1"
+    },
+    {
+      "id": "n_dataset_augmentedsubset_getitem",
+      "type": "file",
+      "file": "graphify/obsidian/.__getitem__()_1.md",
+      "x": 1640,
+      "y": 1680,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_remappeddataset_getitem",
+      "type": "file",
+      "file": "graphify/obsidian/.__getitem__().md",
+      "x": 1840,
+      "y": 1680,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_augmentedsubset_init",
+      "type": "file",
+      "file": "graphify/obsidian/.__init__()_10.md",
+      "x": 2040,
+      "y": 1680,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_remappeddataset_init",
+      "type": "file",
+      "file": "graphify/obsidian/.__init__()_9.md",
+      "x": 1640,
+      "y": 1760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_augmentedsubset_len",
+      "type": "file",
+      "file": "graphify/obsidian/.__len__()_1.md",
+      "x": 1840,
+      "y": 1760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_remappeddataset_len",
+      "type": "file",
+      "file": "graphify/obsidian/.__len__().md",
+      "x": 2040,
+      "y": 1760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_rationale_40",
+      "type": "file",
+      "file": "graphify/obsidian/Build image transforms for training or inference..md",
+      "x": 1640,
+      "y": 1840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_rationale_113",
+      "type": "file",
+      "file": "graphify/obsidian/Compute per-channel mean and std over the entire dataset.     Call once after au.md",
+      "x": 1840,
+      "y": 1840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset",
+      "type": "file",
+      "file": "graphify/obsidian/Dataset.md",
+      "x": 2040,
+      "y": 1840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/Dataset and DataLoader helpers for card classification.  Expects images organize.md",
+      "x": 1640,
+      "y": 1920,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_rationale_67",
+      "type": "file",
+      "file": "graphify/obsidian/Load the augmented dataset and split into trainvaltest.      Returns.md",
+      "x": 1840,
+      "y": 1920,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_rationale_150",
+      "type": "file",
+      "file": "graphify/obsidian/Wraps ImageFolder and remaps class indices to canonical order..md",
+      "x": 2040,
+      "y": 1920,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_rationale_169",
+      "type": "file",
+      "file": "graphify/obsidian/Wraps a Subset and applies augmentation transforms..md",
+      "x": 1640,
+      "y": 2000,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_augmentedsubset",
+      "type": "file",
+      "file": "graphify/obsidian/_AugmentedSubset.md",
+      "x": 1840,
+      "y": 2000,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_remappeddataset",
+      "type": "file",
+      "file": "graphify/obsidian/_RemappedDataset.md",
+      "x": 2040,
+      "y": 2000,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_compute_mean_std",
+      "type": "file",
+      "file": "graphify/obsidian/compute_mean_std().md",
+      "x": 1640,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_recognition_dataset_py",
+      "type": "file",
+      "file": "graphify/obsidian/dataset.py.md",
+      "x": 1840,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_get_transforms",
+      "type": "file",
+      "file": "graphify/obsidian/get_transforms().md",
+      "x": 2040,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_load_dataset",
+      "type": "file",
+      "file": "graphify/obsidian/load_dataset().md",
+      "x": 1640,
+      "y": 2160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_load_norm_stats",
+      "type": "file",
+      "file": "graphify/obsidian/load_norm_stats().md",
+      "x": 1840,
+      "y": 2160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_make_loaders",
+      "type": "file",
+      "file": "graphify/obsidian/make_loaders().md",
+      "x": 2040,
+      "y": 2160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_dataset_save_norm_stats",
+      "type": "file",
+      "file": "graphify/obsidian/save_norm_stats().md",
+      "x": 1640,
+      "y": 2240,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g7",
+      "type": "group",
+      "label": "Training Data Collector",
+      "x": 3240,
+      "y": 1600,
+      "width": 1100,
+      "height": 820,
+      "color": "2"
+    },
+    {
+      "id": "n_screenshot_rationale_15",
+      "type": "file",
+      "file": "graphify/obsidian/Call once at startup to fix coordinate mismatches caused by DPI scaling.     Mus.md",
+      "x": 3260,
+      "y": 1680,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_collector_rationale_129",
+      "type": "file",
+      "file": "graphify/obsidian/Capture a fullscreen screenshot and let the user drag a crop region..md",
+      "x": 3460,
+      "y": 1680,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_screenshot_rationale_29",
+      "type": "file",
+      "file": "graphify/obsidian/Capture a screen region and return a BGR numpy array.      Args         bbox (.md",
+      "x": 3660,
+      "y": 1680,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_screenshot_rationale_48",
+      "type": "file",
+      "file": "graphify/obsidian/Capture an entire monitor.      Args         monitor_index 1-based monitor ind.md",
+      "x": 3260,
+      "y": 1760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_collector_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/Interactive card image collector.  Opens a live view of a screen region and lets.md",
+      "x": 3460,
+      "y": 1760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_collector_rationale_43",
+      "type": "file",
+      "file": "graphify/obsidian/Resize frame to 64x64 RGB and save to dataraw{label}. Returns saved path..md",
+      "x": 3660,
+      "y": 1760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_screenshot_rationale_64",
+      "type": "file",
+      "file": "graphify/obsidian/Return metadata for all available monitors.      Returns         List of dicts.md",
+      "x": 3260,
+      "y": 1840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_collector_rationale_37",
+      "type": "file",
+      "file": "graphify/obsidian/Return next available filename like img_00042.png..md",
+      "x": 3460,
+      "y": 1840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_collector_rationale_53",
+      "type": "file",
+      "file": "graphify/obsidian/Run the interactive collector.      Args         bbox (left, top, width, heigh.md",
+      "x": 3660,
+      "y": 1840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_screenshot_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/Screen capture utilities using mss.  NOTE mss returns BGRA on Windows. All func.md",
+      "x": 3260,
+      "y": 1920,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_collector_next_filename",
+      "type": "file",
+      "file": "graphify/obsidian/_next_filename().md",
+      "x": 3460,
+      "y": 1920,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_collector_save_image",
+      "type": "file",
+      "file": "graphify/obsidian/_save_image().md",
+      "x": 3660,
+      "y": 1920,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_collector_select_region_interactively",
+      "type": "file",
+      "file": "graphify/obsidian/_select_region_interactively().md",
+      "x": 3260,
+      "y": 2000,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_capture_collector_py",
+      "type": "file",
+      "file": "graphify/obsidian/collector.py.md",
+      "x": 3460,
+      "y": 2000,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_screenshot_grab_fullscreen",
+      "type": "file",
+      "file": "graphify/obsidian/grab_fullscreen().md",
+      "x": 3660,
+      "y": 2000,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_screenshot_grab_region",
+      "type": "file",
+      "file": "graphify/obsidian/grab_region().md",
+      "x": 3260,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_screenshot_list_monitors",
+      "type": "file",
+      "file": "graphify/obsidian/list_monitors().md",
+      "x": 3460,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_collector_main",
+      "type": "file",
+      "file": "graphify/obsidian/main().md",
+      "x": 3660,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_collector_run_collector",
+      "type": "file",
+      "file": "graphify/obsidian/run_collector().md",
+      "x": 3260,
+      "y": 2160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_capture_screenshot_py",
+      "type": "file",
+      "file": "graphify/obsidian/screenshot.py.md",
+      "x": 3460,
+      "y": 2160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_screenshot_set_dpi_aware",
+      "type": "file",
+      "file": "graphify/obsidian/set_dpi_aware().md",
+      "x": 3660,
+      "y": 2160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g8",
+      "type": "group",
+      "label": "Seat Stats & Player HUD",
+      "x": 4640,
+      "y": 1600,
+      "width": 1100,
+      "height": 720,
+      "color": "3"
+    },
+    {
+      "id": "n_seat_hud_seathudlabel_init",
+      "type": "file",
+      "file": "graphify/obsidian/.__init__()_7.md",
+      "x": 4660,
+      "y": 1680,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_seat_hud_seathudlabel_show_waiting",
+      "type": "file",
+      "file": "graphify/obsidian/._show_waiting().md",
+      "x": 4860,
+      "y": 1680,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_seat_hud_seathudlabel_clear_stats",
+      "type": "file",
+      "file": "graphify/obsidian/.clear_stats().md",
+      "x": 5060,
+      "y": 1680,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_pokerdb_get_seat_hands",
+      "type": "file",
+      "file": "graphify/obsidian/.get_seat_hands().md",
+      "x": 4660,
+      "y": 1760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_seat_hud_seathudlabel_update_stats",
+      "type": "file",
+      "file": "graphify/obsidian/.update_stats().md",
+      "x": 4860,
+      "y": 1760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_seat_hud_rationale_15",
+      "type": "file",
+      "file": "graphify/obsidian/A small label positioned near a seat showing stats..md",
+      "x": 5060,
+      "y": 1760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_stats_rationale_28",
+      "type": "file",
+      "file": "graphify/obsidian/Compute stats for a seat from the database..md",
+      "x": 4660,
+      "y": 1840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_stats_rationale_81",
+      "type": "file",
+      "file": "graphify/obsidian/Compute stats for all seats. Returns dict keyed by seat name..md",
+      "x": 4860,
+      "y": 1840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_seat_hud_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/Per-seat HUD labels displayed near each opponent seat on the overlay.  Shows VPI.md",
+      "x": 5060,
+      "y": 1840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_database_rationale_172",
+      "type": "file",
+      "file": "graphify/obsidian/Return all hand_seats rows for a seat (optionally filtered by session)..md",
+      "x": 4660,
+      "y": 1920,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_stats_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/Seat statistics computed from the hand history database.  Stats tracked   VPIP.md",
+      "x": 4860,
+      "y": 1920,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_seat_hud_seathudlabel",
+      "type": "file",
+      "file": "graphify/obsidian/SeatHudLabel.md",
+      "x": 5060,
+      "y": 1920,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_stats_seatstats",
+      "type": "file",
+      "file": "graphify/obsidian/SeatStats.md",
+      "x": 4660,
+      "y": 2000,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_stats_compute_all_stats",
+      "type": "file",
+      "file": "graphify/obsidian/compute_all_stats().md",
+      "x": 4860,
+      "y": 2000,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_stats_compute_stats",
+      "type": "file",
+      "file": "graphify/obsidian/compute_stats().md",
+      "x": 5060,
+      "y": 2000,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_overlay_seat_hud_py",
+      "type": "file",
+      "file": "graphify/obsidian/seat_hud.py.md",
+      "x": 4660,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_tracking_stats_py",
+      "type": "file",
+      "file": "graphify/obsidian/stats.py.md",
+      "x": 4860,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g9",
+      "type": "group",
+      "label": "Log Parsing & Hand Detection",
+      "x": 6040,
+      "y": 1600,
+      "width": 880,
+      "height": 720,
+      "color": "4"
+    },
+    {
+      "id": "n_log_tailer_handparser_init",
+      "type": "file",
+      "file": "graphify/obsidian/.__init__()_1.md",
+      "x": 6060,
+      "y": 1680,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_log_tailer_logtailer_init",
+      "type": "file",
+      "file": "graphify/obsidian/.__init__()_2.md",
+      "x": 6260,
+      "y": 1680,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_log_tailer_logtailer_get_latest_file",
+      "type": "file",
+      "file": "graphify/obsidian/._get_latest_file().md",
+      "x": 6460,
+      "y": 1680,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_log_tailer_logtailer_tail_loop",
+      "type": "file",
+      "file": "graphify/obsidian/._tail_loop().md",
+      "x": 6060,
+      "y": 1760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_log_tailer_handparser_parse_line",
+      "type": "file",
+      "file": "graphify/obsidian/.parse_line().md",
+      "x": 6260,
+      "y": 1760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_log_tailer_logtailer_start",
+      "type": "file",
+      "file": "graphify/obsidian/.start().md",
+      "x": 6460,
+      "y": 1760,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_log_tailer_logtailer_stop",
+      "type": "file",
+      "file": "graphify/obsidian/.stop().md",
+      "x": 6060,
+      "y": 1840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_log_tailer_handparser",
+      "type": "file",
+      "file": "graphify/obsidian/HandParser.md",
+      "x": 6260,
+      "y": 1840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_log_tailer_logtailer",
+      "type": "file",
+      "file": "graphify/obsidian/LogTailer.md",
+      "x": 6460,
+      "y": 1840,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_log_tailer_parsedhand",
+      "type": "file",
+      "file": "graphify/obsidian/ParsedHand.md",
+      "x": 6060,
+      "y": 1920,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_log_tailer_rationale_44",
+      "type": "file",
+      "file": "graphify/obsidian/Parses a single line.          Returns a ParsedHand when the hand finishes (SUMM.md",
+      "x": 6260,
+      "y": 1920,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_log_tailer_rationale_29",
+      "type": "file",
+      "file": "graphify/obsidian/Parses standard hand history lines into a ParsedHand object..md",
+      "x": 6460,
+      "y": 1920,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_log_tailer_playeraction",
+      "type": "file",
+      "file": "graphify/obsidian/PlayerAction.md",
+      "x": 6060,
+      "y": 2000,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_log_tailer_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/Tailer for live poker hand history files (e.g., PokerStars format).  Provides a.md",
+      "x": 6260,
+      "y": 2000,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_log_tailer_rationale_108",
+      "type": "file",
+      "file": "graphify/obsidian/Watches a directory for the latest hand history file and tails it..md",
+      "x": 6460,
+      "y": 2000,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_capture_log_tailer_py",
+      "type": "file",
+      "file": "graphify/obsidian/log_tailer.py.md",
+      "x": 6060,
+      "y": 2080,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g10",
+      "type": "group",
+      "label": "Window Capture",
+      "x": 0,
+      "y": 2700,
+      "width": 880,
+      "height": 520,
+      "color": "5"
+    },
+    {
+      "id": "n_window_rationale_73",
+      "type": "file",
+      "file": "graphify/obsidian/Capture a window's current on-screen position.      NOTE mss captures the scree.md",
+      "x": 20,
+      "y": 2780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_window_rationale_52",
+      "type": "file",
+      "file": "graphify/obsidian/Find the first visible window whose title contains `title_substring` (case-insen.md",
+      "x": 220,
+      "y": 2780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_window_rationale_19",
+      "type": "file",
+      "file": "graphify/obsidian/Return all visible windows with non-empty titles and positive dimensions.      A.md",
+      "x": 420,
+      "y": 2780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_window_rationale_66",
+      "type": "file",
+      "file": "graphify/obsidian/Return all visible windows with non-empty titles..md",
+      "x": 20,
+      "y": 2860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_window_rationale_99",
+      "type": "file",
+      "file": "graphify/obsidian/Return current (left, top, width, height) for a window handle..md",
+      "x": 220,
+      "y": 2860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_window_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/Window discovery and capture utilities (Windows-specific).  Finds a poker client.md",
+      "x": 420,
+      "y": 2860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_window_enumerate_windows",
+      "type": "file",
+      "file": "graphify/obsidian/_enumerate_windows().md",
+      "x": 20,
+      "y": 2940,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_window_capture_window",
+      "type": "file",
+      "file": "graphify/obsidian/capture_window().md",
+      "x": 220,
+      "y": 2940,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_window_find_window",
+      "type": "file",
+      "file": "graphify/obsidian/find_window().md",
+      "x": 420,
+      "y": 2940,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_window_get_window_bbox",
+      "type": "file",
+      "file": "graphify/obsidian/get_window_bbox().md",
+      "x": 20,
+      "y": 3020,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_window_list_windows",
+      "type": "file",
+      "file": "graphify/obsidian/list_windows().md",
+      "x": 220,
+      "y": 3020,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_capture_window_py",
+      "type": "file",
+      "file": "graphify/obsidian/window.py.md",
+      "x": 420,
+      "y": 3020,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g11",
+      "type": "group",
+      "label": "CNN Model Architecture",
+      "x": 1620,
+      "y": 2700,
+      "width": 660,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_model_cardclassifier_init",
+      "type": "file",
+      "file": "graphify/obsidian/.__init__()_12.md",
+      "x": 1640,
+      "y": 2780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_model_cardclassifier_forward",
+      "type": "file",
+      "file": "graphify/obsidian/.forward().md",
+      "x": 1840,
+      "y": 2780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_model_cardclassifier",
+      "type": "file",
+      "file": "graphify/obsidian/CardClassifier.md",
+      "x": 2040,
+      "y": 2780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_model_rationale_1",
+      "type": "file",
+      "file": "graphify/obsidian/CardClassifier CNN \u2014 54-class card recognition model.  Architecture   3x (Conv2.md",
+      "x": 1640,
+      "y": 2860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_model_count_parameters",
+      "type": "file",
+      "file": "graphify/obsidian/count_parameters().md",
+      "x": 1840,
+      "y": 2860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_railbird_src_recognition_model_py",
+      "type": "file",
+      "file": "graphify/obsidian/model.py.md",
+      "x": 2040,
+      "y": 2860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g12",
+      "type": "group",
+      "label": "Package Init",
+      "x": 3240,
+      "y": 2700,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_railbird_src_init_py",
+      "type": "file",
+      "file": "graphify/obsidian/__init__.py.md",
+      "x": 3260,
+      "y": 2780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g13",
+      "type": "group",
+      "label": "Capture Package Init",
+      "x": 4640,
+      "y": 2700,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_railbird_src_capture_init_py",
+      "type": "file",
+      "file": "graphify/obsidian/__init__.py_1.md",
+      "x": 4660,
+      "y": 2780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g14",
+      "type": "group",
+      "label": "Common Package Init",
+      "x": 6040,
+      "y": 2700,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_railbird_src_common_init_py",
+      "type": "file",
+      "file": "graphify/obsidian/__init__.py_2.md",
+      "x": 6060,
+      "y": 2780,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g15",
+      "type": "group",
+      "label": "Engine Package Init",
+      "x": 0,
+      "y": 3300,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_railbird_src_engine_init_py",
+      "type": "file",
+      "file": "graphify/obsidian/__init__.py_3.md",
+      "x": 20,
+      "y": 3380,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g16",
+      "type": "group",
+      "label": "Overlay Package Init",
+      "x": 1620,
+      "y": 3300,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_railbird_src_overlay_init_py",
+      "type": "file",
+      "file": "graphify/obsidian/__init__.py_4.md",
+      "x": 1640,
+      "y": 3380,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g17",
+      "type": "group",
+      "label": "Recognition Package Init",
+      "x": 3240,
+      "y": 3300,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_railbird_src_recognition_init_py",
+      "type": "file",
+      "file": "graphify/obsidian/__init__.py_5.md",
+      "x": 3260,
+      "y": 3380,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g18",
+      "type": "group",
+      "label": "Tracking Package Init",
+      "x": 4640,
+      "y": 3300,
+      "width": 600,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_railbird_src_tracking_init_py",
+      "type": "file",
+      "file": "graphify/obsidian/__init__.py_6.md",
+      "x": 4660,
+      "y": 3380,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g19",
+      "type": "group",
+      "label": "Project Codename",
+      "x": 6040,
+      "y": 3300,
+      "width": 600,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_concept_railbird_codename",
+      "type": "file",
+      "file": "graphify/obsidian/Railbird (Project Codename).md",
+      "x": 6060,
+      "y": 3380,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g20",
+      "type": "group",
+      "label": "Seat Concept",
+      "x": 0,
+      "y": 3780,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_concept_seat",
+      "type": "file",
+      "file": "graphify/obsidian/Seat (Table Position).md",
+      "x": 20,
+      "y": 3860,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g21",
+      "type": "group",
+      "label": "NumPy Dependency",
+      "x": 1620,
+      "y": 3780,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_dep_numpy",
+      "type": "file",
+      "file": "graphify/obsidian/numpy.md",
+      "x": 1640,
+      "y": 3860,
+      "width": 180,
+      "height": 60
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_railbird_src_capture_calibrator_py_calibrator_pct",
+      "fromNode": "n_railbird_src_capture_calibrator_py",
+      "toNode": "n_calibrator_pct",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_calibrator_py_calibrator_calibrator",
+      "fromNode": "n_railbird_src_capture_calibrator_py",
+      "toNode": "n_calibrator_calibrator",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_calibrator_py_calibrator_run_calibration",
+      "fromNode": "n_railbird_src_capture_calibrator_py",
+      "toNode": "n_calibrator_run_calibration",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_calibrator_py_calibrator_rationale_1",
+      "fromNode": "n_railbird_src_capture_calibrator_py",
+      "toNode": "n_calibrator_rationale_1",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_calibrator_pct_calibrator_calibrator_run",
+      "fromNode": "n_calibrator_pct",
+      "toNode": "n_calibrator_calibrator_run",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_calibrator_calibrator_calibrator_calibrator_init",
+      "fromNode": "n_calibrator_calibrator",
+      "toNode": "n_calibrator_calibrator_init",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_calibrator_calibrator_calibrator_calibrator_mouse_callback",
+      "fromNode": "n_calibrator_calibrator",
+      "toNode": "n_calibrator_calibrator_mouse_callback",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_calibrator_calibrator_calibrator_calibrator_draw_overlay",
+      "fromNode": "n_calibrator_calibrator",
+      "toNode": "n_calibrator_calibrator_draw_overlay",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_calibrator_calibrator_calibrator_calibrator_run",
+      "fromNode": "n_calibrator_calibrator",
+      "toNode": "n_calibrator_calibrator_run",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_calibrator_calibrator_calibrator_run_calibration",
+      "fromNode": "n_calibrator_calibrator",
+      "toNode": "n_calibrator_run_calibration",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_calibrator_calibrator_calibrator_rationale_56",
+      "fromNode": "n_calibrator_calibrator",
+      "toNode": "n_calibrator_rationale_56",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_calibrator_calibrator_draw_overlay_calibrator_calibrator_run",
+      "fromNode": "n_calibrator_calibrator_draw_overlay",
+      "toNode": "n_calibrator_calibrator_run",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_calibrator_calibrator_draw_overlay_cropper_regiondef_to_pixels",
+      "fromNode": "n_calibrator_calibrator_draw_overlay",
+      "toNode": "n_cropper_regiondef_to_pixels",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_calibrator_calibrator_run_calibrator_run_calibration",
+      "fromNode": "n_calibrator_calibrator_run",
+      "toNode": "n_calibrator_run_calibration",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_calibrator_calibrator_run_calibrator_rationale_116",
+      "fromNode": "n_calibrator_calibrator_run",
+      "toNode": "n_calibrator_rationale_116",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_calibrator_calibrator_run_cropper_regiondef",
+      "fromNode": "n_calibrator_calibrator_run",
+      "toNode": "n_cropper_regiondef",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_calibrator_calibrator_run_inference_cardrecognizer_predict",
+      "fromNode": "n_calibrator_calibrator_run",
+      "toNode": "n_inference_cardrecognizer_predict",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_calibrator_calibrator_run_inference_cardrecognizer_predict_batch",
+      "fromNode": "n_calibrator_calibrator_run",
+      "toNode": "n_inference_cardrecognizer_predict_batch",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_calibrator_run_calibration_calibrator_rationale_171",
+      "fromNode": "n_calibrator_run_calibration",
+      "toNode": "n_calibrator_rationale_171",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_calibrator_run_calibration_window_find_window",
+      "fromNode": "n_calibrator_run_calibration",
+      "toNode": "n_window_find_window",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_calibrator_run_calibration_window_capture_window",
+      "fromNode": "n_calibrator_run_calibration",
+      "toNode": "n_window_capture_window",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_calibrator_run_calibration_screenshot_grab_fullscreen",
+      "fromNode": "n_calibrator_run_calibration",
+      "toNode": "n_screenshot_grab_fullscreen",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_calibrator_run_calibration_cropper_tableprofile",
+      "fromNode": "n_calibrator_run_calibration",
+      "toNode": "n_cropper_tableprofile",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_calibrator_run_calibration_cropper_save_profile",
+      "fromNode": "n_calibrator_run_calibration",
+      "toNode": "n_cropper_save_profile",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_railbird_src_capture_collector_py_collector_next_filename",
+      "fromNode": "n_railbird_src_capture_collector_py",
+      "toNode": "n_collector_next_filename",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_collector_py_collector_save_image",
+      "fromNode": "n_railbird_src_capture_collector_py",
+      "toNode": "n_collector_save_image",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_collector_py_collector_run_collector",
+      "fromNode": "n_railbird_src_capture_collector_py",
+      "toNode": "n_collector_run_collector",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_collector_py_collector_select_region_interactively",
+      "fromNode": "n_railbird_src_capture_collector_py",
+      "toNode": "n_collector_select_region_interactively",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_collector_py_collector_main",
+      "fromNode": "n_railbird_src_capture_collector_py",
+      "toNode": "n_collector_main",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_collector_py_collector_rationale_1",
+      "fromNode": "n_railbird_src_capture_collector_py",
+      "toNode": "n_collector_rationale_1",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_collector_next_filename_collector_save_image",
+      "fromNode": "n_collector_next_filename",
+      "toNode": "n_collector_save_image",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_collector_next_filename_collector_rationale_37",
+      "fromNode": "n_collector_next_filename",
+      "toNode": "n_collector_rationale_37",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_collector_save_image_collector_run_collector",
+      "fromNode": "n_collector_save_image",
+      "toNode": "n_collector_run_collector",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_collector_save_image_collector_rationale_43",
+      "fromNode": "n_collector_save_image",
+      "toNode": "n_collector_rationale_43",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_collector_run_collector_collector_main",
+      "fromNode": "n_collector_run_collector",
+      "toNode": "n_collector_main",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_collector_run_collector_collector_rationale_53",
+      "fromNode": "n_collector_run_collector",
+      "toNode": "n_collector_rationale_53",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_collector_run_collector_screenshot_grab_region",
+      "fromNode": "n_collector_run_collector",
+      "toNode": "n_screenshot_grab_region",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_collector_select_region_interactively_collector_main",
+      "fromNode": "n_collector_select_region_interactively",
+      "toNode": "n_collector_main",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_collector_select_region_interactively_collector_rationale_129",
+      "fromNode": "n_collector_select_region_interactively",
+      "toNode": "n_collector_rationale_129",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_collector_select_region_interactively_screenshot_grab_fullscreen",
+      "fromNode": "n_collector_select_region_interactively",
+      "toNode": "n_screenshot_grab_fullscreen",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_collector_main_screenshot_set_dpi_aware",
+      "fromNode": "n_collector_main",
+      "toNode": "n_screenshot_set_dpi_aware",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_railbird_src_capture_cropper_py_cropper_regiondef",
+      "fromNode": "n_railbird_src_capture_cropper_py",
+      "toNode": "n_cropper_regiondef",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_cropper_py_cropper_tableprofile",
+      "fromNode": "n_railbird_src_capture_cropper_py",
+      "toNode": "n_cropper_tableprofile",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_cropper_py_cropper_from_dict",
+      "fromNode": "n_railbird_src_capture_cropper_py",
+      "toNode": "n_cropper_from_dict",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_cropper_py_cropper_save_profile",
+      "fromNode": "n_railbird_src_capture_cropper_py",
+      "toNode": "n_cropper_save_profile",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_cropper_py_cropper_load_profile",
+      "fromNode": "n_railbird_src_capture_cropper_py",
+      "toNode": "n_cropper_load_profile",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_cropper_py_cropper_crop_regions",
+      "fromNode": "n_railbird_src_capture_cropper_py",
+      "toNode": "n_cropper_crop_regions",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_cropper_py_cropper_rationale_1",
+      "fromNode": "n_railbird_src_capture_cropper_py",
+      "toNode": "n_cropper_rationale_1",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_cropper_regiondef_cropper_regiondef_to_pixels",
+      "fromNode": "n_cropper_regiondef",
+      "toNode": "n_cropper_regiondef_to_pixels",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_cropper_regiondef_cropper_from_dict",
+      "fromNode": "n_cropper_regiondef",
+      "toNode": "n_cropper_from_dict",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_cropper_regiondef_to_pixels_cropper_crop_regions",
+      "fromNode": "n_cropper_regiondef_to_pixels",
+      "toNode": "n_cropper_crop_regions",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_cropper_regiondef_to_pixels_cropper_rationale_46",
+      "fromNode": "n_cropper_regiondef_to_pixels",
+      "toNode": "n_cropper_rationale_46",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_cropper_tableprofile_cropper_tableprofile_all_card_regions",
+      "fromNode": "n_cropper_tableprofile",
+      "toNode": "n_cropper_tableprofile_all_card_regions",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_cropper_tableprofile_cropper_tableprofile_to_dict",
+      "fromNode": "n_cropper_tableprofile",
+      "toNode": "n_cropper_tableprofile_to_dict",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_cropper_tableprofile_all_card_regions_cropper_crop_regions",
+      "fromNode": "n_cropper_tableprofile_all_card_regions",
+      "toNode": "n_cropper_crop_regions",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_cropper_tableprofile_all_card_regions_cropper_rationale_66",
+      "fromNode": "n_cropper_tableprofile_all_card_regions",
+      "toNode": "n_cropper_rationale_66",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_cropper_tableprofile_to_dict_cropper_save_profile",
+      "fromNode": "n_cropper_tableprofile_to_dict",
+      "toNode": "n_cropper_save_profile",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_cropper_from_dict_cropper_load_profile",
+      "fromNode": "n_cropper_from_dict",
+      "toNode": "n_cropper_load_profile",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_cropper_crop_regions_cropper_rationale_108",
+      "fromNode": "n_cropper_crop_regions",
+      "toNode": "n_cropper_rationale_108",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_cropper_crop_regions_pipeline_captureloop_run_once",
+      "fromNode": "n_cropper_crop_regions",
+      "toNode": "n_pipeline_captureloop_run_once",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_railbird_src_capture_log_tailer_py_log_tailer_playeraction",
+      "fromNode": "n_railbird_src_capture_log_tailer_py",
+      "toNode": "n_log_tailer_playeraction",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_log_tailer_py_log_tailer_parsedhand",
+      "fromNode": "n_railbird_src_capture_log_tailer_py",
+      "toNode": "n_log_tailer_parsedhand",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_log_tailer_py_log_tailer_handparser",
+      "fromNode": "n_railbird_src_capture_log_tailer_py",
+      "toNode": "n_log_tailer_handparser",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_log_tailer_py_log_tailer_logtailer",
+      "fromNode": "n_railbird_src_capture_log_tailer_py",
+      "toNode": "n_log_tailer_logtailer",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_log_tailer_py_log_tailer_rationale_1",
+      "fromNode": "n_railbird_src_capture_log_tailer_py",
+      "toNode": "n_log_tailer_rationale_1",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_playeraction_log_tailer_handparser_parse_line",
+      "fromNode": "n_log_tailer_playeraction",
+      "toNode": "n_log_tailer_handparser_parse_line",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_parsedhand_log_tailer_handparser_parse_line",
+      "fromNode": "n_log_tailer_parsedhand",
+      "toNode": "n_log_tailer_handparser_parse_line",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_handparser_log_tailer_handparser_init",
+      "fromNode": "n_log_tailer_handparser",
+      "toNode": "n_log_tailer_handparser_init",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_handparser_log_tailer_handparser_parse_line",
+      "fromNode": "n_log_tailer_handparser",
+      "toNode": "n_log_tailer_handparser_parse_line",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_handparser_log_tailer_logtailer_init",
+      "fromNode": "n_log_tailer_handparser",
+      "toNode": "n_log_tailer_logtailer_init",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_handparser_log_tailer_rationale_29",
+      "fromNode": "n_log_tailer_handparser",
+      "toNode": "n_log_tailer_rationale_29",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_handparser_parse_line_log_tailer_logtailer_tail_loop",
+      "fromNode": "n_log_tailer_handparser_parse_line",
+      "toNode": "n_log_tailer_logtailer_tail_loop",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_handparser_parse_line_log_tailer_rationale_44",
+      "fromNode": "n_log_tailer_handparser_parse_line",
+      "toNode": "n_log_tailer_rationale_44",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_logtailer_log_tailer_logtailer_init",
+      "fromNode": "n_log_tailer_logtailer",
+      "toNode": "n_log_tailer_logtailer_init",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_logtailer_log_tailer_logtailer_start",
+      "fromNode": "n_log_tailer_logtailer",
+      "toNode": "n_log_tailer_logtailer_start",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_logtailer_log_tailer_logtailer_stop",
+      "fromNode": "n_log_tailer_logtailer",
+      "toNode": "n_log_tailer_logtailer_stop",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_logtailer_log_tailer_logtailer_get_latest_file",
+      "fromNode": "n_log_tailer_logtailer",
+      "toNode": "n_log_tailer_logtailer_get_latest_file",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_logtailer_log_tailer_logtailer_tail_loop",
+      "fromNode": "n_log_tailer_logtailer",
+      "toNode": "n_log_tailer_logtailer_tail_loop",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_logtailer_log_tailer_rationale_108",
+      "fromNode": "n_log_tailer_logtailer",
+      "toNode": "n_log_tailer_rationale_108",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_logtailer_get_latest_file_log_tailer_logtailer_tail_loop",
+      "fromNode": "n_log_tailer_logtailer_get_latest_file",
+      "toNode": "n_log_tailer_logtailer_tail_loop",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_log_tailer_logtailer_tail_loop_database_pokerdb_close",
+      "fromNode": "n_log_tailer_logtailer_tail_loop",
+      "toNode": "n_database_pokerdb_close",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_railbird_src_capture_pipeline_py_pipeline_frameresult",
+      "fromNode": "n_railbird_src_capture_pipeline_py",
+      "toNode": "n_pipeline_frameresult",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_pipeline_py_pipeline_hero_cards",
+      "fromNode": "n_railbird_src_capture_pipeline_py",
+      "toNode": "n_pipeline_hero_cards",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_pipeline_py_pipeline_community_cards",
+      "fromNode": "n_railbird_src_capture_pipeline_py",
+      "toNode": "n_pipeline_community_cards",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_pipeline_py_pipeline_captureloop",
+      "fromNode": "n_railbird_src_capture_pipeline_py",
+      "toNode": "n_pipeline_captureloop",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_pipeline_py_pipeline_rationale_1",
+      "fromNode": "n_railbird_src_capture_pipeline_py",
+      "toNode": "n_pipeline_rationale_1",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_pipeline_frameresult_pipeline_frameresult_known_labels",
+      "fromNode": "n_pipeline_frameresult",
+      "toNode": "n_pipeline_frameresult_known_labels",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_pipeline_frameresult_pipeline_captureloop_run_once",
+      "fromNode": "n_pipeline_frameresult",
+      "toNode": "n_pipeline_captureloop_run_once",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_pipeline_frameresult_pipeline_rationale_22",
+      "fromNode": "n_pipeline_frameresult",
+      "toNode": "n_pipeline_rationale_22",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_pipeline_frameresult_known_labels_pipeline_rationale_38",
+      "fromNode": "n_pipeline_frameresult_known_labels",
+      "toNode": "n_pipeline_rationale_38",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_pipeline_captureloop_pipeline_captureloop_init",
+      "fromNode": "n_pipeline_captureloop",
+      "toNode": "n_pipeline_captureloop_init",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_pipeline_captureloop_pipeline_captureloop_ensure_window",
+      "fromNode": "n_pipeline_captureloop",
+      "toNode": "n_pipeline_captureloop_ensure_window",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_pipeline_captureloop_pipeline_captureloop_run_once",
+      "fromNode": "n_pipeline_captureloop",
+      "toNode": "n_pipeline_captureloop_run_once",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_pipeline_captureloop_pipeline_captureloop_run_forever",
+      "fromNode": "n_pipeline_captureloop",
+      "toNode": "n_pipeline_captureloop_run_forever",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_pipeline_captureloop_pipeline_captureloop_stop",
+      "fromNode": "n_pipeline_captureloop",
+      "toNode": "n_pipeline_captureloop_stop",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_pipeline_captureloop_pipeline_rationale_44",
+      "fromNode": "n_pipeline_captureloop",
+      "toNode": "n_pipeline_rationale_44",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_pipeline_captureloop_ensure_window_pipeline_captureloop_run_once",
+      "fromNode": "n_pipeline_captureloop_ensure_window",
+      "toNode": "n_pipeline_captureloop_run_once",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_pipeline_captureloop_ensure_window_pipeline_rationale_67",
+      "fromNode": "n_pipeline_captureloop_ensure_window",
+      "toNode": "n_pipeline_rationale_67",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_pipeline_captureloop_ensure_window_window_get_window_bbox",
+      "fromNode": "n_pipeline_captureloop_ensure_window",
+      "toNode": "n_window_get_window_bbox",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_pipeline_captureloop_ensure_window_window_find_window",
+      "fromNode": "n_pipeline_captureloop_ensure_window",
+      "toNode": "n_window_find_window",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_pipeline_captureloop_run_once_pipeline_captureloop_run_forever",
+      "fromNode": "n_pipeline_captureloop_run_once",
+      "toNode": "n_pipeline_captureloop_run_forever",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_pipeline_captureloop_run_once_pipeline_rationale_82",
+      "fromNode": "n_pipeline_captureloop_run_once",
+      "toNode": "n_pipeline_rationale_82",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_pipeline_captureloop_run_once_window_capture_window",
+      "fromNode": "n_pipeline_captureloop_run_once",
+      "toNode": "n_window_capture_window",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_pipeline_captureloop_run_once_inference_cardrecognizer_predict_batch",
+      "fromNode": "n_pipeline_captureloop_run_once",
+      "toNode": "n_inference_cardrecognizer_predict_batch",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_pipeline_captureloop_run_forever_pipeline_rationale_135",
+      "fromNode": "n_pipeline_captureloop_run_forever",
+      "toNode": "n_pipeline_rationale_135",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_screenshot_py_screenshot_set_dpi_aware",
+      "fromNode": "n_railbird_src_capture_screenshot_py",
+      "toNode": "n_screenshot_set_dpi_aware",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_screenshot_py_screenshot_grab_region",
+      "fromNode": "n_railbird_src_capture_screenshot_py",
+      "toNode": "n_screenshot_grab_region",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_screenshot_py_screenshot_grab_fullscreen",
+      "fromNode": "n_railbird_src_capture_screenshot_py",
+      "toNode": "n_screenshot_grab_fullscreen",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_screenshot_py_screenshot_list_monitors",
+      "fromNode": "n_railbird_src_capture_screenshot_py",
+      "toNode": "n_screenshot_list_monitors",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_screenshot_py_screenshot_rationale_1",
+      "fromNode": "n_railbird_src_capture_screenshot_py",
+      "toNode": "n_screenshot_rationale_1",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_screenshot_set_dpi_aware_screenshot_rationale_15",
+      "fromNode": "n_screenshot_set_dpi_aware",
+      "toNode": "n_screenshot_rationale_15",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_screenshot_grab_region_screenshot_rationale_29",
+      "fromNode": "n_screenshot_grab_region",
+      "toNode": "n_screenshot_rationale_29",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_screenshot_grab_region_window_capture_window",
+      "fromNode": "n_screenshot_grab_region",
+      "toNode": "n_window_capture_window",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_screenshot_grab_fullscreen_screenshot_rationale_48",
+      "fromNode": "n_screenshot_grab_fullscreen",
+      "toNode": "n_screenshot_rationale_48",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_screenshot_list_monitors_screenshot_rationale_64",
+      "fromNode": "n_screenshot_list_monitors",
+      "toNode": "n_screenshot_rationale_64",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_window_py_window_enumerate_windows",
+      "fromNode": "n_railbird_src_capture_window_py",
+      "toNode": "n_window_enumerate_windows",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_window_py_window_find_window",
+      "fromNode": "n_railbird_src_capture_window_py",
+      "toNode": "n_window_find_window",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_window_py_window_list_windows",
+      "fromNode": "n_railbird_src_capture_window_py",
+      "toNode": "n_window_list_windows",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_window_py_window_capture_window",
+      "fromNode": "n_railbird_src_capture_window_py",
+      "toNode": "n_window_capture_window",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_window_py_window_get_window_bbox",
+      "fromNode": "n_railbird_src_capture_window_py",
+      "toNode": "n_window_get_window_bbox",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_capture_window_py_window_rationale_1",
+      "fromNode": "n_railbird_src_capture_window_py",
+      "toNode": "n_window_rationale_1",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_window_enumerate_windows_window_find_window",
+      "fromNode": "n_window_enumerate_windows",
+      "toNode": "n_window_find_window",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_window_enumerate_windows_window_list_windows",
+      "fromNode": "n_window_enumerate_windows",
+      "toNode": "n_window_list_windows",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_window_enumerate_windows_window_rationale_19",
+      "fromNode": "n_window_enumerate_windows",
+      "toNode": "n_window_rationale_19",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_window_find_window_window_rationale_52",
+      "fromNode": "n_window_find_window",
+      "toNode": "n_window_rationale_52",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_window_list_windows_window_rationale_66",
+      "fromNode": "n_window_list_windows",
+      "toNode": "n_window_rationale_66",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_window_capture_window_window_rationale_73",
+      "fromNode": "n_window_capture_window",
+      "toNode": "n_window_rationale_73",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_window_get_window_bbox_window_rationale_99",
+      "fromNode": "n_window_get_window_bbox",
+      "toNode": "n_window_rationale_99",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_common_constants_py_constants_label_to_display",
+      "fromNode": "n_railbird_src_common_constants_py",
+      "toNode": "n_constants_label_to_display",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_common_constants_py_constants_canonicalize_preflop",
+      "fromNode": "n_railbird_src_common_constants_py",
+      "toNode": "n_constants_canonicalize_preflop",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_common_constants_py_constants_rationale_1",
+      "fromNode": "n_railbird_src_common_constants_py",
+      "toNode": "n_constants_rationale_1",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_constants_label_to_display_constants_rationale_50",
+      "fromNode": "n_constants_label_to_display",
+      "toNode": "n_constants_rationale_50",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_constants_label_to_display_hud_card_html",
+      "fromNode": "n_constants_label_to_display",
+      "toNode": "n_hud_card_html",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_constants_canonicalize_preflop_constants_rationale_58",
+      "fromNode": "n_constants_canonicalize_preflop",
+      "toNode": "n_constants_rationale_58",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_constants_canonicalize_preflop_lookup_prefloptable_get_equity",
+      "fromNode": "n_constants_canonicalize_preflop",
+      "toNode": "n_lookup_prefloptable_get_equity",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_constants_canonicalize_preflop_lookup_prefloptable_hand_class",
+      "fromNode": "n_constants_canonicalize_preflop",
+      "toNode": "n_lookup_prefloptable_hand_class",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_railbird_src_engine_equity_py_equity_equityresult",
+      "fromNode": "n_railbird_src_engine_equity_py",
+      "toNode": "n_equity_equityresult",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_engine_equity_py_equity_classify_strength",
+      "fromNode": "n_railbird_src_engine_equity_py",
+      "toNode": "n_equity_classify_strength",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_engine_equity_py_equity_street_from_board",
+      "fromNode": "n_railbird_src_engine_equity_py",
+      "toNode": "n_equity_street_from_board",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_engine_equity_py_equity_run_simulation_loop",
+      "fromNode": "n_railbird_src_engine_equity_py",
+      "toNode": "n_equity_run_simulation_loop",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_engine_equity_py_equity_monte_carlo_eval7",
+      "fromNode": "n_railbird_src_engine_equity_py",
+      "toNode": "n_equity_monte_carlo_eval7",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_engine_equity_py_equity_monte_carlo_treys",
+      "fromNode": "n_railbird_src_engine_equity_py",
+      "toNode": "n_equity_monte_carlo_treys",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_engine_equity_py_equity_equitycalculator",
+      "fromNode": "n_railbird_src_engine_equity_py",
+      "toNode": "n_equity_equitycalculator",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_engine_equity_py_equity_rationale_1",
+      "fromNode": "n_railbird_src_engine_equity_py",
+      "toNode": "n_equity_rationale_1",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_equityresult_equity_equitycalculator_calculate",
+      "fromNode": "n_equity_equityresult",
+      "toNode": "n_equity_equitycalculator_calculate",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_classify_strength_equity_equitycalculator_calculate",
+      "fromNode": "n_equity_classify_strength",
+      "toNode": "n_equity_equitycalculator_calculate",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_street_from_board_equity_equitycalculator_calculate",
+      "fromNode": "n_equity_street_from_board",
+      "toNode": "n_equity_equitycalculator_calculate",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_run_simulation_loop_equity_monte_carlo_eval7",
+      "fromNode": "n_equity_run_simulation_loop",
+      "toNode": "n_equity_monte_carlo_eval7",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_run_simulation_loop_equity_monte_carlo_treys",
+      "fromNode": "n_equity_run_simulation_loop",
+      "toNode": "n_equity_monte_carlo_treys",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_run_simulation_loop_equity_rationale_70",
+      "fromNode": "n_equity_run_simulation_loop",
+      "toNode": "n_equity_rationale_70",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_monte_carlo_eval7_equity_equitycalculator_monte_carlo",
+      "fromNode": "n_equity_monte_carlo_eval7",
+      "toNode": "n_equity_equitycalculator_monte_carlo",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_monte_carlo_eval7_equity_rationale_104",
+      "fromNode": "n_equity_monte_carlo_eval7",
+      "toNode": "n_equity_rationale_104",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_monte_carlo_treys_equity_equitycalculator_monte_carlo",
+      "fromNode": "n_equity_monte_carlo_treys",
+      "toNode": "n_equity_equitycalculator_monte_carlo",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_equitycalculator_equity_equitycalculator_init",
+      "fromNode": "n_equity_equitycalculator",
+      "toNode": "n_equity_equitycalculator_init",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_equitycalculator_equity_equitycalculator_calculate",
+      "fromNode": "n_equity_equitycalculator",
+      "toNode": "n_equity_equitycalculator_calculate",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_equitycalculator_equity_equitycalculator_preflop_equity",
+      "fromNode": "n_equity_equitycalculator",
+      "toNode": "n_equity_equitycalculator_preflop_equity",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_equitycalculator_equity_equitycalculator_monte_carlo",
+      "fromNode": "n_equity_equitycalculator",
+      "toNode": "n_equity_equitycalculator_monte_carlo",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_equitycalculator_equity_rationale_153",
+      "fromNode": "n_equity_equitycalculator",
+      "toNode": "n_equity_rationale_153",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_equitycalculator_init_lookup_prefloptable",
+      "fromNode": "n_equity_equitycalculator_init",
+      "toNode": "n_lookup_prefloptable",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_equity_equitycalculator_calculate_equity_equitycalculator_preflop_equity",
+      "fromNode": "n_equity_equitycalculator_calculate",
+      "toNode": "n_equity_equitycalculator_preflop_equity",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_equitycalculator_calculate_equity_equitycalculator_monte_carlo",
+      "fromNode": "n_equity_equitycalculator_calculate",
+      "toNode": "n_equity_equitycalculator_monte_carlo",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_equitycalculator_calculate_equity_rationale_184",
+      "fromNode": "n_equity_equitycalculator_calculate",
+      "toNode": "n_equity_rationale_184",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_equity_equitycalculator_calculate_lookup_prefloptable_hand_class",
+      "fromNode": "n_equity_equitycalculator_calculate",
+      "toNode": "n_lookup_prefloptable_hand_class",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_equity_equitycalculator_preflop_equity_lookup_prefloptable_get_equity",
+      "fromNode": "n_equity_equitycalculator_preflop_equity",
+      "toNode": "n_lookup_prefloptable_get_equity",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_railbird_src_engine_lookup_py_lookup_prefloptable",
+      "fromNode": "n_railbird_src_engine_lookup_py",
+      "toNode": "n_lookup_prefloptable",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_engine_lookup_py_lookup_rationale_1",
+      "fromNode": "n_railbird_src_engine_lookup_py",
+      "toNode": "n_lookup_rationale_1",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_lookup_prefloptable_lookup_prefloptable_init",
+      "fromNode": "n_lookup_prefloptable",
+      "toNode": "n_lookup_prefloptable_init",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_lookup_prefloptable_lookup_prefloptable_get_equity",
+      "fromNode": "n_lookup_prefloptable",
+      "toNode": "n_lookup_prefloptable_get_equity",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_lookup_prefloptable_lookup_prefloptable_hand_class",
+      "fromNode": "n_lookup_prefloptable",
+      "toNode": "n_lookup_prefloptable_hand_class",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_lookup_prefloptable_lookup_rationale_29",
+      "fromNode": "n_lookup_prefloptable",
+      "toNode": "n_lookup_rationale_29",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_lookup_prefloptable_get_equity_lookup_rationale_41",
+      "fromNode": "n_lookup_prefloptable_get_equity",
+      "toNode": "n_lookup_rationale_41",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_lookup_prefloptable_hand_class_lookup_rationale_63",
+      "fromNode": "n_lookup_prefloptable_hand_class",
+      "toNode": "n_lookup_rationale_63",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_engine_strategy_py_strategy_advice",
+      "fromNode": "n_railbird_src_engine_strategy_py",
+      "toNode": "n_strategy_advice",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_engine_strategy_py_strategy_advise",
+      "fromNode": "n_railbird_src_engine_strategy_py",
+      "toNode": "n_strategy_advise",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_engine_strategy_py_strategy_rationale_1",
+      "fromNode": "n_railbird_src_engine_strategy_py",
+      "toNode": "n_strategy_rationale_1",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_strategy_advice_strategy_advise",
+      "fromNode": "n_strategy_advice",
+      "toNode": "n_strategy_advise",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_strategy_advise_strategy_rationale_29",
+      "fromNode": "n_strategy_advise",
+      "toNode": "n_strategy_rationale_29",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_overlay_hud_py_hud_card_html",
+      "fromNode": "n_railbird_src_overlay_hud_py",
+      "toNode": "n_hud_card_html",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_overlay_hud_py_hud_hudpanel",
+      "fromNode": "n_railbird_src_overlay_hud_py",
+      "toNode": "n_hud_hudpanel",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_overlay_hud_py_hud_rationale_1",
+      "fromNode": "n_railbird_src_overlay_hud_py",
+      "toNode": "n_hud_rationale_1",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_hud_card_html_hud_hudpanel_update_display",
+      "fromNode": "n_hud_card_html",
+      "toNode": "n_hud_hudpanel_update_display",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_hud_card_html_hud_rationale_30",
+      "fromNode": "n_hud_card_html",
+      "toNode": "n_hud_rationale_30",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_hud_card_html_styles_suit_color",
+      "fromNode": "n_hud_card_html",
+      "toNode": "n_styles_suit_color",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_hud_hudpanel_qwidget",
+      "fromNode": "n_hud_hudpanel",
+      "toNode": "n_qwidget",
+      "label": "inherits [EXTRACTED]"
+    },
+    {
+      "id": "e_hud_hudpanel_hud_hudpanel_init",
+      "fromNode": "n_hud_hudpanel",
+      "toNode": "n_hud_hudpanel_init",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_hud_hudpanel_hud_hudpanel_build_ui",
+      "fromNode": "n_hud_hudpanel",
+      "toNode": "n_hud_hudpanel_build_ui",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_hud_hudpanel_hud_hudpanel_update_display",
+      "fromNode": "n_hud_hudpanel",
+      "toNode": "n_hud_hudpanel_update_display",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_hud_hudpanel_hud_rationale_40",
+      "fromNode": "n_hud_hudpanel",
+      "toNode": "n_hud_rationale_40",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_hud_hudpanel_widget_overlaywindow_init",
+      "fromNode": "n_hud_hudpanel",
+      "toNode": "n_widget_overlaywindow_init",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_qwidget_widget_overlaywindow",
+      "fromNode": "n_qwidget",
+      "toNode": "n_widget_overlaywindow",
+      "label": "inherits [EXTRACTED]"
+    },
+    {
+      "id": "e_hud_hudpanel_init_hud_hudpanel_build_ui",
+      "fromNode": "n_hud_hudpanel_init",
+      "toNode": "n_hud_hudpanel_build_ui",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_hud_hudpanel_build_ui_qlabel",
+      "fromNode": "n_hud_hudpanel_build_ui",
+      "toNode": "n_qlabel",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_hud_hudpanel_update_display_hud_rationale_107",
+      "fromNode": "n_hud_hudpanel_update_display",
+      "toNode": "n_hud_rationale_107",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_hud_hudpanel_update_display_styles_equity_color",
+      "fromNode": "n_hud_hudpanel_update_display",
+      "toNode": "n_styles_equity_color",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_railbird_src_overlay_seat_hud_py_seat_hud_seathudlabel",
+      "fromNode": "n_railbird_src_overlay_seat_hud_py",
+      "toNode": "n_seat_hud_seathudlabel",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_railbird_src_overlay_seat_hud_py_seat_hud_rationale_1",
+      "fromNode": "n_railbird_src_overlay_seat_hud_py",
+      "toNode": "n_seat_hud_rationale_1",
+      "label": "rationale_for [EXTRACTED]"
+    },
+    {
+      "id": "e_seat_hud_seathudlabel_qlabel",
+      "fromNode": "n_seat_hud_seathudlabel",
+      "toNode": "n_qlabel",
+      "label": "inherits [EXTRACTED]"
+    },
+    {
+      "id": "e_seat_hud_seathudlabel_seat_hud_seathudlabel_init",
+      "fromNode": "n_seat_hud_seathudlabel",
+      "toNode": "n_seat_hud_seathudlabel_init",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_seat_hud_seathudlabel_seat_hud_seathudlabel_show_waiting",
+      "fromNode": "n_seat_hud_seathudlabel",
+      "toNode": "n_seat_hud_seathudlabel_show_waiting",
+      "label": "method [EXTRACTED]"
+    },
+    {
+      "id": "e_seat_hud_seathudlabel_seat_hud_seathudlabel_update_stats",
+      "fromNode": "n_seat_hud_seathudlabel",
+      "toNode": "n_seat_hud_seathudlabel_update_stats",
+      "label": "method [EXTRACTED]"
+    }
+  ]
+}

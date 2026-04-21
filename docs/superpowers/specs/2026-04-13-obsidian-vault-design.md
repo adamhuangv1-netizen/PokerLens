@@ -63,7 +63,7 @@ Stored in `docs/obsidian/.obsidian/templates/`. The Templates core plugin is con
 title: 
 date: {{date}}
 status: open | decided | superseded
-modules: [capture, recognition, engine, overlay, tracking]
+modules: []   # pick from: capture, recognition, engine, overlay, tracking
 ---
 
 ## Context
@@ -81,7 +81,7 @@ ADRs use a sequential number prefix (`001-`, `002-`, ...) so they sort chronolog
 ---
 date: {{date}}
 tags: [session]
-modules: [capture, recognition, engine, overlay, tracking]
+modules: []   # pick from: capture, recognition, engine, overlay, tracking
 ---
 
 ## Focus

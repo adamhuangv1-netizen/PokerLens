@@ -103,6 +103,7 @@ def export_onnx(model, path: str, device):
         input_names=["image"],
         output_names=["logits"],
         dynamic_axes={"image": {0: "batch"}, "logits": {0: "batch"}},
+        dynamo=False,
     )
     print(f"Exported ONNX model -> {path}")
 

@@ -132,8 +132,8 @@ class PokerDB:
                 return
             to_write = list(self._pending)
             self._pending.clear()
+            session_id = self._session_id
 
-        session_id = self._session_id
         if session_id is None:
             return
 

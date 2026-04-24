@@ -135,6 +135,7 @@ class PokerLensApp:
         # --- Stats cache (recomputed at most every _STATS_TTL seconds) ---
         self._stats_cache: dict = {}
         self._stats_last_computed: float = 0.0
+        self._stats_lock = threading.Lock()
 
         # --- System tray ---
         self._tray = self._build_tray()
@@ -194,15 +195,15 @@ class PokerLensApp:
                     
         # Grab stats — recompute at most every _STATS_TTL seconds
         now = time.time()
-        if now - self._stats_last_computed > _STATS_TTL:
-            self._stats_cache = compute_all_stats(self._db, self._hand_tracker.seat_names)
-            self._stats_last_computed = now
-        all_stats = self._stats_cache
+        with self._stats_lock:
+            if now - self._stats_last_computed > _STATS_TTL:
+                self._stats_cache = compute_all_stats(self._db, self._hand_tracker.seat_names)
+                self._stats_last_computed = now
+            all_stats = self._stats_cache
 
         total_ms = capture_ms + (time.perf_counter() - t0) * 1000
 
-        # Use QTimer.singleShot to safely update the GUI from this background thread
-        QTimer.singleShot(0, lambda: self._overlay.update_display(
+        self._overlay.update_display(
             hero_labels=hero_labels,
             board_labels=board_labels,
             equity_result=equity_result,
@@ -210,7 +211,7 @@ class PokerLensApp:
             latency_ms=total_ms if self._debug else None,
             waiting=(len(valid_hero) < 2),
             seat_stats=all_stats
-        ))
+        )
 
     def _reposition_overlay(self) -> None:
         """Re-align the overlay to the poker window position."""

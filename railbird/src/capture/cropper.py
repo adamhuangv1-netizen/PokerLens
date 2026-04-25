@@ -61,6 +61,7 @@ class TableProfile:
     community_cards: list[RegionDef] = field(default_factory=list)
     seat_cards: list[RegionDef] = field(default_factory=list)
     pot_region: Optional[RegionDef] = None
+    to_call_region: Optional[RegionDef] = None
 
     def all_card_regions(self) -> list[RegionDef]:
         """All regions that produce card images (hero + community + opponents)."""
@@ -77,6 +78,7 @@ class TableProfile:
         community = [RegionDef(**r) for r in d.get("community_cards", [])]
         seat_cards = [RegionDef(**r) for r in d.get("seat_cards", [])]
         pot = RegionDef(**d["pot_region"]) if d.get("pot_region") else None
+        to_call = RegionDef(**d["to_call_region"]) if d.get("to_call_region") else None
         return cls(
             name=d["name"],
             window_title=d["window_title"],
@@ -86,6 +88,7 @@ class TableProfile:
             community_cards=community,
             seat_cards=seat_cards,
             pot_region=pot,
+            to_call_region=to_call,
         )
 
 

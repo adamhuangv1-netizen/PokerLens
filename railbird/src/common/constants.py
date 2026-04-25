@@ -34,6 +34,9 @@ SUIT_COLOR = {"c": "#000000", "d": "#cc0000", "h": "#cc0000", "s": "#000000"}
 # Special/non-card labels indicating no card or unknown state
 SPECIAL_LABELS: frozenset[str] = frozenset({"empty", "back", "unknown"})
 
+# Labels that mean the seat is empty / folded (back = face-down, still in the hand)
+FOLDED_LABELS: frozenset[str] = frozenset({"empty", "unknown"})
+
 # Equity strength thresholds — shared by hand strength classification and HUD coloring
 EQUITY_STRONG: float = 0.65
 EQUITY_MEDIUM: float = 0.50

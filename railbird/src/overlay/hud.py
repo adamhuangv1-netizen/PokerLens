@@ -103,8 +103,22 @@ class HudPanel(QWidget):
         advice: Optional[Advice],
         latency_ms: Optional[float] = None,
         waiting: bool = False,
+        error_message: Optional[str] = None,
     ) -> None:
         """Update all HUD elements. Call from the main GUI thread only."""
+
+        if error_message:
+            self._cards_label.setText("Recognition error")
+            self._board_label.setText("")
+            self._equity_label.setText("—%")
+            self._equity_bar.setValue(0)
+            self._equity_bar.setStyleSheet("")
+            self._action_label.setText("—")
+            self._rationale_label.setText(
+                f'<span style="color:#e74c3c">{error_message}</span>'
+            )
+            self._rationale_label.setTextFormat(Qt.TextFormat.RichText)
+            return
 
         if waiting or not hero_labels or all(l in ("unknown", "empty") for l in hero_labels):
             self._cards_label.setText("Waiting for hand...")

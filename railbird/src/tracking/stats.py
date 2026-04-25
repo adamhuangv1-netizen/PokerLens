@@ -13,6 +13,32 @@ from dataclasses import dataclass
 from src.tracking.database import PokerDB
 
 
+def _classify_archetype(vpip: float, pfr: float, af: float, hands_played: int) -> str:
+    """
+    Map VPIP/PFR/AF onto a standard poker player archetype.
+
+    Thresholds based on common 6-max population stats.
+    Returns "Unknown" until 30 hands of sample are available.
+    """
+    if hands_played < 30:
+        return "Unknown"
+    if vpip > 0.35 and af > 2.5:
+        return "Maniac"
+    if vpip > 0.35 and af < 1.0:
+        return "Fish"
+    if vpip > 0.35:
+        return "LAG"
+    if vpip < 0.15:
+        return "Nit"
+    if 0.15 <= vpip <= 0.25 and pfr >= 0.12 and af >= 1.5:
+        return "TAG"
+    if 0.25 < vpip <= 0.35 and af >= 2.0:
+        return "LAG-light"
+    if af < 1.0:
+        return "Loose-Passive"
+    return "Reg"
+
+
 @dataclass
 class SeatStats:
     seat: str
@@ -21,7 +47,8 @@ class SeatStats:
     vpip: float       # 0.0 - 1.0
     pfr: float        # 0.0 - 1.0
     af: float         # 0.0+
-    avg_reaction_time: float # seconds
+    avg_reaction_time: float  # seconds
+    player_type: str = "Unknown"
 
 
 def compute_stats(db: PokerDB, seat: str, session_id: int = None) -> SeatStats:
@@ -74,6 +101,7 @@ def compute_stats(db: PokerDB, seat: str, session_id: int = None) -> SeatStats:
         pfr=round(pfr, 3),
         af=round(af, 2),
         avg_reaction_time=round(avg_reaction_time, 2),
+        player_type=_classify_archetype(vpip, pfr, af, hands_played),
     )
 
 

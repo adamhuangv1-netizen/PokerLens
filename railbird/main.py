@@ -30,10 +30,12 @@ from PyQt6.QtCore import Qt, QThread, QTimer, pyqtSignal, QObject
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 
+from collections import defaultdict
+
 from src.capture.cropper import load_profile, TableProfile
 from src.capture.pipeline import CaptureLoop, FrameResult
 from src.capture.window import find_window, get_window_bbox
-from src.engine.equity import EquityCalculator
+from src.engine.equity import DuplicateCardError, EquityCalculator
 from src.engine.strategy import advise
 from src.overlay.widget import OverlayWindow
 from src.recognition.inference import CardRecognizer
@@ -81,7 +83,7 @@ class PokerLensApp:
         debug: bool = False,
     ) -> None:
         self._profile = profile
-        self._num_opponents = num_opponents
+        self._fallback_opponents = num_opponents
         self._debug = debug
 
         # --- Core components ---
@@ -92,6 +94,13 @@ class PokerLensApp:
 
         seat_keys = [r.key for r in profile.seat_cards]
         self._hand_tracker = HandTracker(self._db, seat_keys)
+
+        # Group seat card region keys by seat for live opponent counting
+        seat_groups: dict[str, list[str]] = defaultdict(list)
+        for r in profile.seat_cards:
+            seat_name = r.key.rsplit("_card", 1)[0]
+            seat_groups[seat_name].append(r.key)
+        self._seat_card_keys: list[list[str]] = list(seat_groups.values())
 
         # --- Capture loop (worker thread) ---
         capture_loop = CaptureLoop(profile, self._recognizer)
@@ -152,14 +161,10 @@ class PokerLensApp:
         # Update hand tracker (very fast, ~1ms)
         self._hand_tracker.update(result)
 
-        # Extract card labels
-        hero_labels = [label for label, conf in result.hero_cards]
-        board_labels = [label for label, conf in result.community_cards]
-
         # Compute equity in a background thread to keep UI responsive
         threading.Thread(
             target=self._compute_and_update,
-            args=(hero_labels, board_labels, result.elapsed_ms),
+            args=(result,),
             daemon=True,
         ).start()
 
@@ -167,32 +172,44 @@ class PokerLensApp:
         if self._db.get_pending_count() >= 10:
             threading.Thread(target=self._db.flush, daemon=True).start()
 
-    def _compute_and_update(
-        self,
-        hero_labels: list[str],
-        board_labels: list[str],
-        capture_ms: float,
-    ) -> None:
+    def _compute_and_update(self, result: FrameResult) -> None:
         """Run equity calculation and update overlay. Runs in a daemon thread."""
         t0 = time.perf_counter()
 
+        hero_labels = [label for label, conf in result.hero_cards]
+        board_labels = [label for label, conf in result.community_cards]
+        valid_hero = [l for l in hero_labels if l not in ("unknown", "empty", "back")]
+
         equity_result = None
         advice_result = None
+        error_message = None
 
-        valid_hero = [l for l in hero_labels if l not in ("unknown", "empty", "back")]
         if len(valid_hero) == 2:
+            # Live opponent count: use seat card visibility, fall back to CLI flag
+            num_opponents = (
+                result.count_active_opponents(self._seat_card_keys)
+                if self._seat_card_keys
+                else self._fallback_opponents
+            )
+            # Pot odds from OCR (None when regions not calibrated)
+            pot_odds = None
+            if result.pot_amount and result.to_call_amount and result.to_call_amount > 0:
+                pot_odds = result.to_call_amount / (result.pot_amount + result.to_call_amount)
+
             try:
                 equity_result = self._equity_calc.calculate(
                     hero=valid_hero,
                     board=board_labels,
-                    num_opponents=self._num_opponents,
+                    num_opponents=num_opponents,
                 )
                 if equity_result:
-                    advice_result = advise(equity_result)
+                    advice_result = advise(equity_result, pot_odds=pot_odds)
+            except DuplicateCardError:
+                error_message = "Recognition error: duplicate cards detected"
             except Exception as e:
                 if self._debug:
                     print(f"Equity error: {e}")
-                    
+
         # Grab stats — recompute at most every _STATS_TTL seconds
         now = time.time()
         with self._stats_lock:
@@ -201,7 +218,7 @@ class PokerLensApp:
                 self._stats_last_computed = now
             all_stats = self._stats_cache
 
-        total_ms = capture_ms + (time.perf_counter() - t0) * 1000
+        total_ms = result.elapsed_ms + (time.perf_counter() - t0) * 1000
 
         self._overlay.update_display(
             hero_labels=hero_labels,
@@ -210,7 +227,8 @@ class PokerLensApp:
             advice=advice_result,
             latency_ms=total_ms if self._debug else None,
             waiting=(len(valid_hero) < 2),
-            seat_stats=all_stats
+            seat_stats=all_stats,
+            error_message=error_message,
         )
 
     def _reposition_overlay(self) -> None:

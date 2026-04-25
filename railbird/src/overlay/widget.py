@@ -10,8 +10,8 @@ Key window flags:
 
 from typing import Optional
 
-from PyQt6.QtCore import Qt, QTimer, pyqtSignal, pyqtSlot
-from PyQt6.QtWidgets import QApplication, QVBoxLayout, QWidget, QLabel
+from PyQt6.QtCore import Qt, pyqtSignal, pyqtSlot
+from PyQt6.QtWidgets import QVBoxLayout, QWidget, QLabel
 
 from src.overlay.hud import HudPanel
 from src.capture.cropper import TableProfile
@@ -27,8 +27,8 @@ class OverlayWindow(QWidget):
     direct call from main thread) to refresh the content.
     """
 
-    # Signal used to safely update from a worker thread
-    display_update = pyqtSignal(list, list, object, object, float, bool, dict)
+    # Signal used to safely update from a worker thread (8-tuple)
+    display_update = pyqtSignal(list, list, object, object, float, bool, dict, object)
 
     def __init__(
         self,
@@ -60,20 +60,22 @@ class OverlayWindow(QWidget):
         self._hud = HudPanel(self)
         layout.addWidget(self._hud)
         
-        # Create seat HUD boxes
+        # Create seat HUD boxes, positioned using percentage coords relative to overlay size
         self._seat_huds = {}
         if self._profile:
-            # We group cards by seat
-            seat_coords = {}
+            seat_coords: dict[str, tuple[int, int]] = {}
             for seat_region in self._profile.seat_cards:
                 seat_name = seat_region.key.rsplit("_card", 1)[0]
-                seat_coords[seat_name] = (seat_region.x, seat_region.y)
-                
+                if seat_name not in seat_coords:
+                    px, py, _, _ = seat_region.to_pixels(width, height)
+                    seat_coords[seat_name] = (px, py)
+
             for seat_name, (sx, sy) in seat_coords.items():
                 lbl = QLabel("", self)
                 lbl.setObjectName("seat_hud")
-                lbl.setStyleSheet("background-color: rgba(20, 25, 30, 200); color: white; padding: 4px; border-radius: 4px; font-size: 11px;")
-                lbl.move(sx - 20, sy - 40)
+                lbl.setStyleSheet("background-color: rgba(20, 25, 30, 200); color: white; "
+                                  "padding: 4px; border-radius: 4px; font-size: 11px;")
+                lbl.move(max(0, sx - 20), max(0, sy - 40))
                 lbl.hide()
                 self._seat_huds[seat_name] = lbl
 
@@ -82,7 +84,13 @@ class OverlayWindow(QWidget):
 
         self._visible = True
 
-    @pyqtSlot(list, list, object, object, float, bool, dict)
+    _ARCHETYPE_COLOR = {
+        "TAG": "white", "Nit": "#5dade2", "LAG": "#f39c12", "LAG-light": "#f0b27a",
+        "Maniac": "#e74c3c", "Fish": "#2ecc71", "Loose-Passive": "#a569bd", "Reg": "white",
+        "Unknown": "#7f8c8d",
+    }
+
+    @pyqtSlot(list, list, object, object, float, bool, dict, object)
     def _on_display_update(
         self,
         hero_labels: list,
@@ -92,6 +100,7 @@ class OverlayWindow(QWidget):
         latency_ms: float,
         waiting: bool,
         seat_stats: dict,
+        error_message,
     ) -> None:
         self._hud.update_display(
             hero_labels=hero_labels,
@@ -100,17 +109,23 @@ class OverlayWindow(QWidget):
             advice=advice,
             latency_ms=latency_ms,
             waiting=waiting,
+            error_message=error_message,
         )
-        
-        # Update seat huds
+
         for seat_name, lbl in self._seat_huds.items():
             if seat_name in seat_stats and not waiting:
                 stats = seat_stats[seat_name]
-                color = "green" if stats.vpip > 0.4 else "red" if stats.af > 2.0 else "white"
-                
+                archetype = getattr(stats, "player_type", "Unknown")
+                color = self._ARCHETYPE_COLOR.get(archetype, "white")
                 vpip_pct = int(stats.vpip * 100)
                 pfr_pct = int(stats.pfr * 100)
-                lbl.setText(f"<b>{stats.player_name}</b><br><span style='color:{color}'>VPIP: {vpip_pct}% | PFR: {pfr_pct}% | AF: {stats.af}</span>")
+                lbl.setText(
+                    f"<b>{stats.player_name}</b> "
+                    f"<span style='color:{color}'>[{archetype}]</span><br>"
+                    f"<span style='color:{color}'>VPIP: {vpip_pct}% | PFR: {pfr_pct}% | AF: {stats.af}</span>"
+                )
+                lbl.setTextFormat(Qt.TextFormat.RichText)
+                lbl.adjustSize()
                 lbl.show()
                 lbl.raise_()
             else:
@@ -125,10 +140,9 @@ class OverlayWindow(QWidget):
         latency_ms: Optional[float] = None,
         waiting: bool = False,
         seat_stats: Optional[dict] = None,
+        error_message: Optional[str] = None,
     ) -> None:
-        """
-        Update the HUD. Safe to call from any thread (uses Qt signal).
-        """
+        """Update the HUD. Safe to call from any thread (uses Qt signal)."""
         self.display_update.emit(
             hero_labels,
             board_labels,
@@ -137,6 +151,7 @@ class OverlayWindow(QWidget):
             latency_ms or 0.0,
             waiting,
             seat_stats or {},
+            error_message,
         )
 
     def reposition(self, x: int, y: int, width: int, height: int) -> None:

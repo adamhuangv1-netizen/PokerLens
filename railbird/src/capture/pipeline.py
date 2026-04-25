@@ -14,7 +14,9 @@ import numpy as np
 
 from src.capture.cropper import TableProfile, crop_regions
 from src.capture.window import capture_window, find_window, get_window_bbox
+from src.common.constants import FOLDED_LABELS
 from src.recognition.inference import CardRecognizer
+from src.recognition.ocr import ChipOcr
 
 
 @dataclass
@@ -24,6 +26,8 @@ class FrameResult:
     cards: dict[str, tuple[str, float]]       # region_key -> (label, confidence)
     window_found: bool
     elapsed_ms: float
+    pot_amount: Optional[float] = None        # OCR'd pot total (None if not calibrated)
+    to_call_amount: Optional[float] = None   # OCR'd to-call amount (None if not calibrated)
 
     @property
     def hero_cards(self) -> list[tuple[str, float]]:
@@ -38,6 +42,27 @@ class FrameResult:
         """Return only regions with confident, non-empty, non-unknown labels."""
         return {k: v[0] for k, v in self.cards.items()
                 if v[0] not in ("unknown", "empty", "back")}
+
+    def count_active_opponents(self, seat_key_groups: list[list[str]]) -> int:
+        """
+        Count seats that appear to still be in the hand.
+
+        A seat is active if any of its card regions shows a label that is NOT
+        in FOLDED_LABELS — i.e. a real card label OR "back" (face-down but still
+        in the hand). Only "empty" and "unknown" slots are treated as folded.
+
+        Args:
+            seat_key_groups: One list of region keys per seat (e.g.
+                [["seat_1_card_1", "seat_1_card_2"], ["seat_2_card_1", ...]]).
+
+        Returns:
+            Number of active opponent seats (minimum 1 so equity is always valid).
+        """
+        count = 0
+        for keys in seat_key_groups:
+            if any(self.cards.get(k, ("empty", 0.0))[0] not in FOLDED_LABELS for k in keys):
+                count += 1
+        return max(1, count)
 
 
 class CaptureLoop:
@@ -62,6 +87,7 @@ class CaptureLoop:
         self._on_result = on_result
         self._hwnd: Optional[int] = None
         self._running = False
+        self._ocr = ChipOcr() if (profile.pot_region or profile.to_call_region) else None
 
     def _ensure_window(self) -> bool:
         """Find the poker window if we don't have a handle yet. Returns True if found."""
@@ -117,6 +143,21 @@ class CaptureLoop:
         predictions = self._recognizer.predict_batch(images)
 
         cards = {key: pred for key, pred in zip(keys, predictions)}
+
+        # OCR pot and to-call amounts if regions are calibrated
+        pot_amount = None
+        to_call_amount = None
+        if self._ocr is not None:
+            h, w = frame.shape[:2]
+            if self._profile.pot_region:
+                x, y, rw, rh = self._profile.pot_region.to_pixels(w, h)
+                pot_crop = frame[y:y+rh, x:x+rw]
+                pot_amount = self._ocr.read(pot_crop)
+            if self._profile.to_call_region:
+                x, y, rw, rh = self._profile.to_call_region.to_pixels(w, h)
+                call_crop = frame[y:y+rh, x:x+rw]
+                to_call_amount = self._ocr.read(call_crop)
+
         elapsed = (time.perf_counter() - t0) * 1000
 
         result = FrameResult(
@@ -124,6 +165,8 @@ class CaptureLoop:
             cards=cards,
             window_found=True,
             elapsed_ms=elapsed,
+            pot_amount=pot_amount,
+            to_call_amount=to_call_amount,
         )
 
         if self._on_result:

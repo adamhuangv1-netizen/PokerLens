@@ -29,20 +29,22 @@ from src.capture.window import capture_window, find_window
 
 
 # Ordered list of regions to calibrate.
-# Format: (key, display_name, seat_name_or_None)
+# Format: (key, display_name, seat_name_or_None, optional)
 _REGION_SEQUENCE = [
-    ("hero_1",    "Hero Card 1",        None),
-    ("hero_2",    "Hero Card 2",        None),
-    ("flop_1",    "Community: Flop 1",  None),
-    ("flop_2",    "Community: Flop 2",  None),
-    ("flop_3",    "Community: Flop 3",  None),
-    ("turn",      "Community: Turn",    None),
-    ("river",     "Community: River",   None),
+    ("hero_1",       "Hero Card 1",                     None, False),
+    ("hero_2",       "Hero Card 2",                     None, False),
+    ("flop_1",       "Community: Flop 1",               None, False),
+    ("flop_2",       "Community: Flop 2",               None, False),
+    ("flop_3",       "Community: Flop 3",               None, False),
+    ("turn",         "Community: Turn",                 None, False),
+    ("river",        "Community: River",                None, False),
+    ("pot_region",   "Pot total (S=skip if no OCR)",    None, True),
+    ("to_call_region", "To-call amount (S=skip if no OCR)", None, True),
 ]
 
 # Optional seat opponent card regions (2 cards each, up to 5 opponents for 6-max)
 _SEAT_SEQUENCE = [
-    (f"seat_{s}_card_{c}", f"Seat {s} Card {c}", f"seat_{s}")
+    (f"seat_{s}_card_{c}", f"Seat {s} Card {c}", f"seat_{s}", False)
     for s in range(1, 6)
     for c in range(1, 3)
 ]
@@ -108,7 +110,7 @@ class Calibrator:
         cv2.rectangle(out, (0, 0), (out.shape[1], bar_h), (20, 20, 20), -1)
         cv2.putText(out, f"[{step+1}/{total}] Draw: {label}",
                     (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 1)
-        cv2.putText(out, "Enter=confirm  Backspace=redo  Escape=abort",
+        cv2.putText(out, "Enter=confirm  S=skip  Backspace=redo  Escape=abort",
                     (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (160, 160, 160), 1)
         return out
 
@@ -124,8 +126,11 @@ class Calibrator:
         cv2.setMouseCallback(wname, self._mouse_callback)
 
         step = 0
+        skipped: set[str] = set()
+
         while step < len(sequence):
             key_name, display_name, seat = sequence[step]
+            optional = sequence[step][3] if len(sequence[step]) > 3 else False
             canvas = self._draw_overlay(self._frame, display_name, step, len(sequence))
             cv2.imshow(wname, canvas)
             k = cv2.waitKey(30) & 0xFF
@@ -133,6 +138,10 @@ class Calibrator:
             if k == 27:  # Escape — abort
                 cv2.destroyWindow(wname)
                 return None
+
+            elif k in (ord('s'), ord('S')) and optional:  # S — skip optional region
+                skipped.add(key_name)
+                step += 1
 
             elif k in (13, 32):  # Enter or Space — confirm
                 if self._confirmed:
@@ -207,6 +216,8 @@ def run_calibration(
     community = [r for r in regions if r.key in
                  ("flop_1", "flop_2", "flop_3", "turn", "river")]
     seats = [r for r in regions if r.key.startswith("seat_")]
+    pot = next((r for r in regions if r.key == "pot_region"), None)
+    to_call = next((r for r in regions if r.key == "to_call_region"), None)
 
     profile = TableProfile(
         name=profile_name,
@@ -216,6 +227,8 @@ def run_calibration(
         hero_cards=hero,
         community_cards=community,
         seat_cards=seats,
+        pot_region=pot,
+        to_call_region=to_call,
     )
 
     os.makedirs(output_dir, exist_ok=True)

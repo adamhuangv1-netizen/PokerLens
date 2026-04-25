@@ -15,6 +15,10 @@ from typing import Optional
 from src.common.constants import SPECIAL_LABELS, EQUITY_STRONG, EQUITY_MEDIUM, EQUITY_MARGINAL
 from src.engine.lookup import PreflopTable
 
+
+class DuplicateCardError(ValueError):
+    """Raised when hero/board cards contain duplicates (CNN misread)."""
+
 # Try fast C-backed evaluator first, fall back to treys
 try:
     import eval7
@@ -201,10 +205,10 @@ class EquityCalculator:
         street = _street_from_board(board)
         known_board = [c for c in board if c not in SPECIAL_LABELS]
 
-        # Edge Case 2: Check for ML hallucinations (duplicate cards). Evaluators crash if duplicates exist.
+        # Check for ML hallucinations (duplicate cards). Evaluators crash on duplicates.
         all_known = hero + known_board
         if len(set(all_known)) != len(all_known):
-            return None
+            raise DuplicateCardError(f"Duplicate cards detected: {all_known}")
 
         if street == "preflop":
             equity = self._preflop_equity(hero[0], hero[1], num_opponents)

@@ -21,6 +21,14 @@ import numpy as np
 
 try:
     import pytesseract
+    # UB Mannheim installer puts tesseract in AppData/Local on Windows
+    import os, shutil
+    if not shutil.which("tesseract"):
+        _fallback = os.path.expandvars(
+            r"%LOCALAPPDATA%\Programs\Tesseract-OCR\tesseract.exe"
+        )
+        if os.path.isfile(_fallback):
+            pytesseract.pytesseract.tesseract_cmd = _fallback
     _PYTESSERACT_AVAILABLE = True
 except ImportError:
     _PYTESSERACT_AVAILABLE = False

@@ -88,6 +88,12 @@ class CaptureLoop:
         self._hwnd: Optional[int] = None
         self._running = False
         self._ocr = ChipOcr() if (profile.pot_region or profile.to_call_region) else None
+        self._ocr_interval: float = 1.0  # run OCR at most once per second
+        self._pot_last_ocr: float = 0.0
+        self._call_last_ocr: float = 0.0
+        self._pot_cached: Optional[float] = None
+        self._call_cached: Optional[float] = None
+        self._aspect_warned: bool = False
 
     def _ensure_window(self) -> bool:
         """Find the poker window if we don't have a handle yet. Returns True if found."""
@@ -126,6 +132,18 @@ class CaptureLoop:
             self._hwnd = None
             return FrameResult(timestamp=t0, cards={}, window_found=False, elapsed_ms=0.0)
 
+        # One-time aspect-ratio sanity check against calibration dimensions
+        if not self._aspect_warned and self._profile.window_width and self._profile.window_height:
+            cal_aspect = self._profile.window_width / self._profile.window_height
+            cur_aspect = frame.shape[1] / frame.shape[0]
+            if abs(cur_aspect - cal_aspect) / cal_aspect > 0.05:
+                print(
+                    f"Warning: window aspect ratio changed since calibration "
+                    f"({cal_aspect:.2f} → {cur_aspect:.2f}). Card regions may be misaligned. "
+                    "Re-run calibrate.py if recognition looks wrong."
+                )
+            self._aspect_warned = True
+
         crops = crop_regions(frame, self._profile)
 
         # Batch classify all regions in one ONNX call
@@ -144,19 +162,22 @@ class CaptureLoop:
 
         cards = {key: pred for key, pred in zip(keys, predictions)}
 
-        # OCR pot and to-call amounts if regions are calibrated
-        pot_amount = None
-        to_call_amount = None
+        # OCR pot and to-call amounts; throttled to once per second to limit CPU overhead
+        pot_amount = self._pot_cached
+        to_call_amount = self._call_cached
         if self._ocr is not None:
+            now = time.perf_counter()
             h, w = frame.shape[:2]
-            if self._profile.pot_region:
+            if self._profile.pot_region and now - self._pot_last_ocr >= self._ocr_interval:
                 x, y, rw, rh = self._profile.pot_region.to_pixels(w, h)
-                pot_crop = frame[y:y+rh, x:x+rw]
-                pot_amount = self._ocr.read(pot_crop)
-            if self._profile.to_call_region:
+                self._pot_cached = self._ocr.read(frame[y:y+rh, x:x+rw])
+                self._pot_last_ocr = now
+                pot_amount = self._pot_cached
+            if self._profile.to_call_region and now - self._call_last_ocr >= self._ocr_interval:
                 x, y, rw, rh = self._profile.to_call_region.to_pixels(w, h)
-                call_crop = frame[y:y+rh, x:x+rw]
-                to_call_amount = self._ocr.read(call_crop)
+                self._call_cached = self._ocr.read(frame[y:y+rh, x:x+rw])
+                self._call_last_ocr = now
+                to_call_amount = self._call_cached
 
         elapsed = (time.perf_counter() - t0) * 1000
 

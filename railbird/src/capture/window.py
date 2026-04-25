@@ -50,7 +50,9 @@ def _enumerate_windows(user32, title_filter: Optional[str] = None) -> list[dict]
 
 def find_window(title_substring: str) -> Optional[dict]:
     """
-    Find the first visible window whose title contains `title_substring` (case-insensitive).
+    Find the visible window whose title contains `title_substring` (case-insensitive).
+    When multiple windows match, returns the one with the largest area (the game table,
+    not an auxiliary chat or notification window).
 
     Returns:
         dict with keys: hwnd (int), title (str), bbox (left, top, width, height)
@@ -59,7 +61,9 @@ def find_window(title_substring: str) -> Optional[dict]:
     if sys.platform != "win32":
         raise RuntimeError("Window discovery is only supported on Windows.")
     results = _enumerate_windows(ctypes.windll.user32, title_filter=title_substring)
-    return results[0] if results else None
+    if not results:
+        return None
+    return max(results, key=lambda r: r["bbox"][2] * r["bbox"][3])
 
 
 def list_windows() -> list[dict]:
@@ -90,6 +94,9 @@ def capture_window(hwnd: int) -> Optional[np.ndarray]:
     w = rect.right - rect.left
     h = rect.bottom - rect.top
     if w <= 0 or h <= 0:
+        return None
+    # Minimized windows report left/top ≈ -32000
+    if rect.left < -30000 or rect.top < -30000:
         return None
 
     return grab_region((rect.left, rect.top, w, h))

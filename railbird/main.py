@@ -138,8 +138,8 @@ class PokerLensApp:
         self._flush_timer.timeout.connect(self._db.flush)
         self._flush_timer.start()
 
-        # --- Equity runs in a thread to avoid blocking GUI ---
-        self._equity_thread_running = False
+        # Non-blocking lock: drop frame if a prior equity calc is still running
+        self._equity_lock = threading.Lock()
 
         # --- Stats cache (recomputed at most every _STATS_TTL seconds) ---
         self._stats_cache: dict = {}
@@ -161,12 +161,13 @@ class PokerLensApp:
         # Update hand tracker (very fast, ~1ms)
         self._hand_tracker.update(result)
 
-        # Compute equity in a background thread to keep UI responsive
-        threading.Thread(
-            target=self._compute_and_update,
-            args=(result,),
-            daemon=True,
-        ).start()
+        # Compute equity in a background thread; drop frame if prior calc is still running
+        if self._equity_lock.acquire(blocking=False):
+            threading.Thread(
+                target=self._compute_and_update,
+                args=(result,),
+                daemon=True,
+            ).start()
 
         # Flush DB periodically (non-blocking since it checks pending count)
         if self._db.get_pending_count() >= 10:
@@ -174,6 +175,12 @@ class PokerLensApp:
 
     def _compute_and_update(self, result: FrameResult) -> None:
         """Run equity calculation and update overlay. Runs in a daemon thread."""
+        try:
+            self._compute_and_update_inner(result)
+        finally:
+            self._equity_lock.release()
+
+    def _compute_and_update_inner(self, result: FrameResult) -> None:
         t0 = time.perf_counter()
 
         hero_labels = [label for label, conf in result.hero_cards]
@@ -210,13 +217,17 @@ class PokerLensApp:
                 if self._debug:
                     print(f"Equity error: {e}")
 
-        # Grab stats — recompute at most every _STATS_TTL seconds
+        # Grab stats — recompute at most every _STATS_TTL seconds (DB query outside lock)
         now = time.time()
         with self._stats_lock:
-            if now - self._stats_last_computed > _STATS_TTL:
-                self._stats_cache = compute_all_stats(self._db, self._hand_tracker.seat_names)
-                self._stats_last_computed = now
+            needs_update = now - self._stats_last_computed > _STATS_TTL
             all_stats = self._stats_cache
+        if needs_update:
+            new_stats = compute_all_stats(self._db, self._hand_tracker.seat_names)
+            with self._stats_lock:
+                self._stats_cache = new_stats
+                self._stats_last_computed = now
+            all_stats = new_stats
 
         total_ms = result.elapsed_ms + (time.perf_counter() - t0) * 1000
 
@@ -240,6 +251,7 @@ class PokerLensApp:
 
     def _setup_hotkey(self) -> None:
         """Register F12 as a global hotkey to toggle overlay visibility."""
+        self._hotkey_listener = None
         try:
             from pynput import keyboard
 
@@ -251,6 +263,7 @@ class PokerLensApp:
             listener = keyboard.Listener(on_press=_on_press)
             listener.daemon = True
             listener.start()
+            self._hotkey_listener = listener
         except ImportError:
             print("pynput not installed — F12 hotkey disabled.")
 
@@ -280,10 +293,15 @@ class PokerLensApp:
     def shutdown(self) -> None:
         self._worker.stop()
         self._log_tailer.stop()
+        if self._hotkey_listener is not None:
+            self._hotkey_listener.stop()
         self._capture_thread.quit()
         self._capture_thread.wait(2000)
         self._flush_timer.stop()
-        self._db.close()
+        # Drain any in-flight equity thread before closing the DB
+        self._equity_lock.acquire()
+        self._equity_lock.release()
+        # DB close is handled by atexit; calling it here would run it twice
 
 
 def main() -> None:
@@ -310,7 +328,11 @@ def main() -> None:
     app = QApplication(sys.argv)
     app.setQuitOnLastWindowClosed(False)  # Keep running when overlay is hidden
 
-    poker_app = PokerLensApp(profile, num_opponents=args.opponents, debug=args.debug)
+    try:
+        poker_app = PokerLensApp(profile, num_opponents=args.opponents, debug=args.debug)
+    except FileNotFoundError as e:
+        print(f"Startup error: {e}")
+        sys.exit(1)
     poker_app.start()
 
     print("\nPokerLens running. Press F12 to toggle overlay. Right-click tray icon to quit.")

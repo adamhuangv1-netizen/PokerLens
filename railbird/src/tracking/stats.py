@@ -57,8 +57,14 @@ def compute_stats(db: PokerDB, seat: str, session_id: int = None) -> SeatStats:
     """
     rows = db.get_seat_hands(seat, session_id)
 
-    hands_played = len(rows)
     player_name = rows[-1].get("player_name", "Unknown") if rows else "Unknown"
+
+    # Filter to current player's hands: skip rows from prior occupants of this seat.
+    # player_name == "Unknown" means log isn't running (vision-only); use all rows.
+    if player_name != "Unknown":
+        rows = [r for r in rows if r.get("player_name") == player_name]
+
+    hands_played = len(rows)
 
     if hands_played == 0:
         return SeatStats(seat=seat, player_name=player_name, hands_played=0, vpip=0.0, pfr=0.0, af=0.0, avg_reaction_time=0.0)

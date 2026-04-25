@@ -14,6 +14,7 @@ from PyQt6.QtCore import Qt, pyqtSignal, pyqtSlot
 from PyQt6.QtWidgets import QVBoxLayout, QWidget, QLabel
 
 from src.overlay.hud import HudPanel
+from src.overlay.styles import COLOR_STRONG, COLOR_MEDIUM, COLOR_WEAK, COLOR_UNKNOWN
 from src.capture.cropper import TableProfile
 from src.engine.equity import EquityResult
 from src.engine.strategy import Advice
@@ -85,9 +86,9 @@ class OverlayWindow(QWidget):
         self._visible = True
 
     _ARCHETYPE_COLOR = {
-        "TAG": "white", "Nit": "#5dade2", "LAG": "#f39c12", "LAG-light": "#f0b27a",
-        "Maniac": "#e74c3c", "Fish": "#2ecc71", "Loose-Passive": "#a569bd", "Reg": "white",
-        "Unknown": "#7f8c8d",
+        "TAG": "white", "Nit": "#5dade2", "LAG": COLOR_MEDIUM, "LAG-light": "#f0b27a",
+        "Maniac": COLOR_WEAK, "Fish": COLOR_STRONG, "Loose-Passive": "#a569bd", "Reg": "white",
+        "Unknown": COLOR_UNKNOWN,
     }
 
     @pyqtSlot(list, list, object, object, float, bool, dict, object)

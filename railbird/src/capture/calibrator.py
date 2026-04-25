@@ -114,7 +114,7 @@ class Calibrator:
                     (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (160, 160, 160), 1)
         return out
 
-    def run(self, sequence: list[tuple[str, str, Optional[str]]]) -> Optional[list[RegionDef]]:
+    def run(self, sequence: list[tuple[str, str, Optional[str], bool]]) -> Optional[list[RegionDef]]:
         """
         Run the calibration UI for the given sequence.
 
@@ -129,8 +129,7 @@ class Calibrator:
         skipped: set[str] = set()
 
         while step < len(sequence):
-            key_name, display_name, seat = sequence[step]
-            optional = sequence[step][3] if len(sequence[step]) > 3 else False
+            key_name, display_name, seat, optional = sequence[step]
             canvas = self._draw_overlay(self._frame, display_name, step, len(sequence))
             cv2.imshow(wname, canvas)
             k = cv2.waitKey(30) & 0xFF

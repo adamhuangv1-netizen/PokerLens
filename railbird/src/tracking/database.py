@@ -19,7 +19,8 @@ from dataclasses import dataclass
 from typing import Optional
 
 _DEFAULT_DB_PATH = os.path.join(
-    os.path.dirname(__file__), "..", "..", "data", "pokerlens.db"
+    os.environ.get("LOCALAPPDATA", os.path.expanduser("~")),
+    "PokerLens", "pokerlens.db"
 )
 
 _MAX_PENDING = 1000
@@ -86,6 +87,7 @@ class PokerDB:
                     turn_action_count INTEGER NOT NULL DEFAULT 0
                 );
                 CREATE INDEX IF NOT EXISTS idx_hand_seats_seat ON hand_seats(seat);
+                CREATE INDEX IF NOT EXISTS idx_hand_seats_hand ON hand_seats(hand_id);
                 CREATE INDEX IF NOT EXISTS idx_hands_session ON hands(session_id);
             """)
 

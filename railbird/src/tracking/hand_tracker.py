@@ -22,14 +22,21 @@ from src.capture.pipeline import FrameResult
 from src.common.constants import SPECIAL_LABELS
 from src.tracking.database import HandRecord, PokerDB
 
+# Consecutive frames required before acting on a state change (~300ms at 10fps).
+# Prevents single-frame CNN misclassifications from triggering phantom hand commits,
+# sticky stayed_* flags, or double-counted thinking-time.
+_DEBOUNCE_FRAMES = 3
+
 
 @dataclass
 class _HandState:
     """Mutable state for the current in-progress hand."""
     started_at: float = 0.0
     street: str = "preflop"
+    max_board_count: int = 0  # ratchets up; prevents street regression on flicker
     board_seen: list[str] = field(default_factory=list)
-    # seat -> {preflop, flop, turn, river, total_thinking_time, turn_action_count}
+    # seat -> {stayed_preflop, stayed_flop, stayed_turn, stayed_river,
+    #          total_thinking_time, turn_action_count}
     seat_participation: dict[str, dict] = field(default_factory=dict)
     current_turn_seat: Optional[str] = None
     turn_started_at: float = 0.0
@@ -70,15 +77,21 @@ class HandTracker:
         self._db = db
         self._seats = self._parse_seats(seat_keys)  # seat_name -> [card_key1, card_key2]
         self._state: Optional[_HandState] = None
-        self._prev_had_hero = False
-        self._prev_board_count = 0
+        # When True, vision _commit_hand skips DB writes — log is the source of truth.
+        self._log_available = False
+
+        # Debounce counters (C3, H1, H2)
+        self._hero_present_frames: int = 0
+        self._hero_absent_frames: int = 0
+        self._seat_present_frames: dict[str, int] = {}
+        self._pending_active_seat: Optional[str] = None
+        self._pending_active_frames: int = 0
 
     @staticmethod
     def _parse_seats(seat_keys: list[str]) -> dict[str, list[str]]:
         """Group card keys by seat name. seat_1_card_1, seat_1_card_2 -> seat_1: [...]"""
         seats: dict[str, list[str]] = {}
         for key in seat_keys:
-            # key format: seat_{n}_card_{m}
             parts = key.rsplit("_card_", 1)
             if len(parts) == 2:
                 seat_name = parts[0]
@@ -93,24 +106,26 @@ class HandTracker:
         if not result.window_found:
             return
 
-        # Extract hero and board info
-        hero_labels = list(result.hero_cards)  # list of (label, confidence)
+        hero_labels = list(result.hero_cards)
         board_raw = list(result.community_cards)
         board_count = _count_known_board(board_raw)
         has_hero = _has_hero_cards(hero_labels)
         board_labels = [label for label, _ in board_raw if label not in SPECIAL_LABELS]
-        current_street = _street_from_count(board_count)
 
-        # --- Hand boundary detection ---
+        # --- Debounced hero present/absent counters (C3) ---
+        if has_hero:
+            self._hero_present_frames += 1
+            self._hero_absent_frames = 0
+        else:
+            self._hero_absent_frames += 1
+            self._hero_present_frames = 0
 
-        # New hand: hero cards appeared (were absent in previous frame)
-        if has_hero and not self._prev_had_hero:
-            if self._state is not None:
-                # Flush previous hand if it didn't close cleanly
-                self._commit_hand(self._state)
+        # --- Hand boundary detection (debounced) ---
+
+        # New hand: N consecutive "hero present" frames while no state is active.
+        # Using == so this fires exactly once per onset, not every frame.
+        if self._hero_present_frames == _DEBOUNCE_FRAMES and self._state is None:
             self._state = _HandState(started_at=time.time())
-            self._state.street = "preflop"
-            # Initialize participation for all tracked seats
             for seat in self._seats:
                 self._state.seat_participation[seat] = {
                     "stayed_preflop": True,  # assume in until we see otherwise
@@ -120,57 +135,71 @@ class HandTracker:
                     "total_thinking_time": 0.0,
                     "turn_action_count": 0,
                 }
+            self._seat_present_frames = {}
 
-        # Hand ended: hero cards disappeared (were present in previous frame)
-        if not has_hero and self._prev_had_hero and self._state is not None:
+        # Hand ended: N consecutive "hero absent" frames.
+        if self._hero_absent_frames == _DEBOUNCE_FRAMES and self._state is not None:
             self._commit_hand(self._state)
             self._state = None
 
         # Update street and seat participation
         if self._state is not None and has_hero:
             self._state.board_seen = board_labels
-            self._state.street = current_street
+            # Ratchet board count: prevents street regression if board flickers
+            self._state.max_board_count = max(board_count, self._state.max_board_count)
+            self._state.street = _street_from_count(self._state.max_board_count)
+            current_street = self._state.street
 
-            # Determine active seat
-            current_active_seat = None
+            # Debounced active-seat transition (H2): require N frames of same seat
+            raw_active = None
             for key, (label, conf) in result.cards.items():
                 if "_active" in key and label not in SPECIAL_LABELS:
-                    current_active_seat = key.split("_active")[0]
+                    raw_active = key.split("_active")[0]
                     break
-            
-            # Handle turn transition
-            if self._state.current_turn_seat != current_active_seat:
-                if self._state.current_turn_seat is not None:
-                    duration = time.time() - self._state.turn_started_at
-                    part = self._state.seat_participation.get(self._state.current_turn_seat)
-                    if part is not None:
-                        part["total_thinking_time"] += duration
-                        part["turn_action_count"] += 1
-                
-                self._state.current_turn_seat = current_active_seat
-                self._state.turn_started_at = time.time()
 
-            # Track which seats still have visible cards per street
+            if raw_active == self._pending_active_seat:
+                self._pending_active_frames += 1
+            else:
+                self._pending_active_seat = raw_active
+                self._pending_active_frames = 1
+
+            if self._pending_active_frames == _DEBOUNCE_FRAMES:
+                confirmed_active = self._pending_active_seat
+                if self._state.current_turn_seat != confirmed_active:
+                    if self._state.current_turn_seat is not None:
+                        duration = time.time() - self._state.turn_started_at
+                        part = self._state.seat_participation.get(self._state.current_turn_seat)
+                        if part is not None:
+                            part["total_thinking_time"] += duration
+                            part["turn_action_count"] += 1
+                    self._state.current_turn_seat = confirmed_active
+                    self._state.turn_started_at = time.time()
+
+            # Debounced seat card visibility (H1): N consecutive frames to set stayed_*
             for seat, card_keys in self._seats.items():
-                has_seat_cards = any(
+                has_cards = any(
                     result.cards.get(k, ("empty", 0))[0] not in SPECIAL_LABELS
                     for k in card_keys
                 )
-                if current_street == "flop" and board_count >= 3:
-                    if has_seat_cards:
-                        self._state.seat_participation[seat]["stayed_flop"] = True
-                elif current_street == "turn" and board_count >= 4:
-                    if has_seat_cards:
-                        self._state.seat_participation[seat]["stayed_turn"] = True
-                elif current_street == "river" and board_count >= 5:
-                    if has_seat_cards:
-                        self._state.seat_participation[seat]["stayed_river"] = True
+                if has_cards:
+                    self._seat_present_frames[seat] = self._seat_present_frames.get(seat, 0) + 1
+                else:
+                    self._seat_present_frames[seat] = 0
 
-        self._prev_had_hero = has_hero
-        self._prev_board_count = board_count
+                if self._seat_present_frames.get(seat, 0) >= _DEBOUNCE_FRAMES:
+                    part = self._state.seat_participation.get(seat)
+                    if part is not None:
+                        if current_street == "flop":
+                            part["stayed_flop"] = True
+                        elif current_street == "turn":
+                            part["stayed_turn"] = True
+                        elif current_street == "river":
+                            part["stayed_river"] = True
 
     def _commit_hand(self, state: _HandState) -> None:
-        """Write a completed hand record to the database."""
+        """Write a completed hand record to the database (skipped when log is available)."""
+        if self._log_available:
+            return
         record = HandRecord(
             session_id=self._db.session_id or 0,
             street_reached=state.street,
@@ -182,9 +211,9 @@ class HandTracker:
 
     def on_parsed_hand(self, parsed_hand) -> None:
         """Called by LogTailer when a text-hand is completed."""
+        self._log_available = True
         participation = {}
         for action in parsed_hand.actions:
-            # find seat by player_name
             seat_num = None
             for s, name in parsed_hand.seats.items():
                 if name == action.player_name:
@@ -192,7 +221,7 @@ class HandTracker:
                     break
             if seat_num is None:
                 continue
-            
+
             seat = f"seat_{seat_num}"
             if seat not in participation:
                 participation[seat] = {
@@ -208,7 +237,7 @@ class HandTracker:
                     "total_thinking_time": 0.0,
                     "turn_action_count": 0,
                 }
-            
+
             part = participation[seat]
             if action.action_type == "bet":
                 part["action_bets"] += 1
@@ -218,7 +247,7 @@ class HandTracker:
                 part["action_raises"] += 1
                 if action.street == "preflop":
                     part["preflop_raise"] = True
-            
+
             if action.street == "flop":
                 part["stayed_flop"] = True
             elif action.street == "turn":
@@ -229,7 +258,7 @@ class HandTracker:
         record = HandRecord(
             session_id=self._db.session_id or 0,
             street_reached="unknown",
-            board_cards=[], 
+            board_cards=[],
             seat_participation=participation,
             timestamp=time.time(),
         )

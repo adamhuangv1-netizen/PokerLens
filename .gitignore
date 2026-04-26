@@ -1,5 +1,12 @@
 # Local Claude notes
 .claude.local.md
+.claude/
+
+# Obsidian app config (workspace/editor state, not vault content)
+.obsidian/
+
+# Windows folder view settings
+desktop.ini
 
 # PokerLens: training data and models
 railbird/data/raw/

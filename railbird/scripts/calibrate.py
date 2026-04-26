@@ -12,7 +12,7 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from src.capture.calibrator import run_calibration
+from src.capture.calibrator_overlay import run_calibration
 from src.capture.screenshot import set_dpi_aware
 
 PROFILES_DIR = os.path.join(os.path.dirname(__file__), "..", "config", "site_profiles")

@@ -11,7 +11,7 @@ Key window flags:
 from typing import Optional
 
 from PyQt6.QtCore import Qt, pyqtSignal, pyqtSlot
-from PyQt6.QtWidgets import QVBoxLayout, QWidget, QLabel
+from PyQt6.QtWidgets import QHBoxLayout, QVBoxLayout, QWidget, QLabel
 
 from src.overlay.hud import HudPanel
 from src.overlay.styles import COLOR_STRONG, COLOR_MEDIUM, COLOR_WEAK, COLOR_UNKNOWN
@@ -28,8 +28,8 @@ class OverlayWindow(QWidget):
     direct call from main thread) to refresh the content.
     """
 
-    # Signal used to safely update from a worker thread (8-tuple)
-    display_update = pyqtSignal(list, list, object, object, float, bool, dict, object)
+    # Signal used to safely update from a worker thread (11-tuple)
+    display_update = pyqtSignal(list, list, object, object, float, bool, dict, object, object, object, int)
 
     def __init__(
         self,
@@ -54,12 +54,17 @@ class OverlayWindow(QWidget):
 
         self.setGeometry(x, y, width, height)
 
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 0, 0, 0)
-        layout.addStretch(1)  # Push main HUD to the bottom
-        
+        # HUD panel anchored to the right side of the overlay
+        outer = QHBoxLayout(self)
+        outer.setContentsMargins(0, 0, 0, 0)
+        outer.addStretch(1)
+
+        right_col = QVBoxLayout()
+        right_col.setContentsMargins(0, 0, 0, 0)
         self._hud = HudPanel(self)
-        layout.addWidget(self._hud)
+        right_col.addWidget(self._hud)
+        right_col.addStretch(1)
+        outer.addLayout(right_col)
         
         # Create seat HUD boxes, positioned using percentage coords relative to overlay size
         self._seat_huds = {}
@@ -91,7 +96,7 @@ class OverlayWindow(QWidget):
         "Unknown": COLOR_UNKNOWN,
     }
 
-    @pyqtSlot(list, list, object, object, float, bool, dict, object)
+    @pyqtSlot(list, list, object, object, float, bool, dict, object, object, object, int)
     def _on_display_update(
         self,
         hero_labels: list,
@@ -102,6 +107,9 @@ class OverlayWindow(QWidget):
         waiting: bool,
         seat_stats: dict,
         error_message,
+        pot_amount,
+        to_call_amount,
+        num_opponents: int,
     ) -> None:
         self._hud.update_display(
             hero_labels=hero_labels,
@@ -111,6 +119,9 @@ class OverlayWindow(QWidget):
             latency_ms=latency_ms,
             waiting=waiting,
             error_message=error_message,
+            pot_amount=pot_amount,
+            to_call_amount=to_call_amount,
+            num_opponents=num_opponents,
         )
 
         for seat_name, lbl in self._seat_huds.items():
@@ -142,6 +153,9 @@ class OverlayWindow(QWidget):
         waiting: bool = False,
         seat_stats: Optional[dict] = None,
         error_message: Optional[str] = None,
+        pot_amount: Optional[float] = None,
+        to_call_amount: Optional[float] = None,
+        num_opponents: int = 1,
     ) -> None:
         """Update the HUD. Safe to call from any thread (uses Qt signal)."""
         self.display_update.emit(
@@ -153,6 +167,9 @@ class OverlayWindow(QWidget):
             waiting,
             seat_stats or {},
             error_message,
+            pot_amount,
+            to_call_amount,
+            num_opponents,
         )
 
     def reposition(self, x: int, y: int, width: int, height: int) -> None:

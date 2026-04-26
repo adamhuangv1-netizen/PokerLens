@@ -2,6 +2,9 @@
 .claude.local.md
 .claude/
 
+# Playwright MCP logs
+.playwright-mcp/
+
 # Obsidian app config (workspace/editor state, not vault content)
 .obsidian/
 

@@ -28,6 +28,7 @@ class FrameResult:
     elapsed_ms: float
     pot_amount: Optional[float] = None        # OCR'd pot total (None if not calibrated)
     to_call_amount: Optional[float] = None   # OCR'd to-call amount (None if not calibrated)
+    active_opponents: Optional[int] = None   # DOM-sourced opponent count (overrides seat detection)
 
     @property
     def hero_cards(self) -> list[tuple[str, float]]:

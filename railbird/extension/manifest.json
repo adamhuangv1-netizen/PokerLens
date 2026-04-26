@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "PokerLens Bridge",
+  "version": "1.0",
+  "description": "Sends Poker Patio card state to the PokerLens overlay via WebSocket",
+  "content_scripts": [
+    {
+      "matches": ["*://pokerpatio.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

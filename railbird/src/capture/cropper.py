@@ -62,6 +62,7 @@ class TableProfile:
     seat_cards: list[RegionDef] = field(default_factory=list)
     pot_region: Optional[RegionDef] = None
     to_call_region: Optional[RegionDef] = None
+    dom_url: Optional[str] = None  # if set, use DOM reader instead of screen capture
 
     def all_card_regions(self) -> list[RegionDef]:
         """All regions that produce card images (hero + community + opponents)."""
@@ -89,6 +90,7 @@ class TableProfile:
             seat_cards=seat_cards,
             pot_region=pot,
             to_call_region=to_call,
+            dom_url=d.get("dom_url"),
         )
 
 

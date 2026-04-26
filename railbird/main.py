@@ -11,7 +11,7 @@ Usage:
     python main.py --profile config/site_profiles/my_table.json --debug
 
 Controls:
-    F12  — toggle overlay visibility
+    F8   — toggle overlay visibility
     The app runs until the window is closed via the system tray (or Ctrl+C in terminal).
 """
 
@@ -26,15 +26,16 @@ from typing import Optional
 from src.capture.screenshot import set_dpi_aware
 set_dpi_aware()
 
-from PyQt6.QtCore import Qt, QThread, QTimer, pyqtSignal, QObject
-from PyQt6.QtGui import QIcon
+from PyQt6.QtCore import QThread, QTimer, pyqtSignal, QObject
+from PyQt6.QtGui import QColor, QFont, QIcon, QPainter, QPixmap
 from PyQt6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 
 from collections import defaultdict
 
 from src.capture.cropper import load_profile, TableProfile
+from src.capture.dom_reader import DomReader
 from src.capture.pipeline import CaptureLoop, FrameResult
-from src.capture.window import find_window, get_window_bbox
+from src.capture.window import find_window
 from src.engine.equity import DuplicateCardError, EquityCalculator
 from src.engine.strategy import advise
 from src.overlay.widget import OverlayWindow
@@ -103,7 +104,20 @@ class PokerLensApp:
         self._seat_card_keys: list[list[str]] = list(seat_groups.values())
 
         # --- Capture loop (worker thread) ---
-        capture_loop = CaptureLoop(profile, self._recognizer)
+        # DOM mode: read card state directly from the browser page (web poker sites)
+        # Screen mode: capture window + CNN classifier (native clients like PokerStars)
+        if profile.dom_url:
+            self._dom_reader = DomReader(profile.dom_url)
+            if not self._dom_reader.connect():
+                raise RuntimeError(
+                    "Could not connect to Chrome. Launch Chrome with:\n"
+                    "  chrome.exe --remote-debugging-port=9222\n"
+                    "then navigate to the poker site."
+                )
+            capture_loop = self._dom_reader
+        else:
+            self._dom_reader = None
+            capture_loop = CaptureLoop(profile, self._recognizer)
         self._worker = CaptureWorker(capture_loop)
         self._capture_thread = QThread()
         self._worker.moveToThread(self._capture_thread)
@@ -191,13 +205,15 @@ class PokerLensApp:
         advice_result = None
         error_message = None
 
+        # Live opponent count: DOM > seat card visibility > CLI flag
+        if result.active_opponents is not None:
+            num_opponents = result.active_opponents
+        elif self._seat_card_keys:
+            num_opponents = result.count_active_opponents(self._seat_card_keys)
+        else:
+            num_opponents = self._fallback_opponents
+
         if len(valid_hero) == 2:
-            # Live opponent count: use seat card visibility, fall back to CLI flag
-            num_opponents = (
-                result.count_active_opponents(self._seat_card_keys)
-                if self._seat_card_keys
-                else self._fallback_opponents
-            )
             # Pot odds from OCR (None when regions not calibrated)
             pot_odds = None
             if result.pot_amount and result.to_call_amount and result.to_call_amount > 0:
@@ -240,6 +256,9 @@ class PokerLensApp:
             waiting=(len(valid_hero) < 2),
             seat_stats=all_stats,
             error_message=error_message,
+            pot_amount=result.pot_amount,
+            to_call_amount=result.to_call_amount,
+            num_opponents=num_opponents,
         )
 
     def _reposition_overlay(self) -> None:
@@ -256,7 +275,7 @@ class PokerLensApp:
             from pynput import keyboard
 
             def _on_press(key):
-                if key == keyboard.Key.f12:
+                if key == keyboard.Key.f8:
                     # Must call Qt methods on the main thread
                     QTimer.singleShot(0, self._overlay.toggle_visible)
 
@@ -267,14 +286,37 @@ class PokerLensApp:
         except ImportError:
             print("pynput not installed — F12 hotkey disabled.")
 
+    @staticmethod
+    def _make_tray_icon() -> QIcon:
+        px = QPixmap(64, 64)
+        px.fill(QColor(0, 0, 0, 0))
+        p = QPainter(px)
+        p.setRenderHint(QPainter.RenderHint.Antialiasing)
+        # Card background
+        p.setBrush(QColor(255, 255, 255))
+        p.setPen(QColor(180, 180, 180))
+        p.drawRoundedRect(2, 2, 60, 60, 8, 8)
+        # "K" rank
+        f = QFont("Georgia", 22, QFont.Weight.Bold)
+        p.setFont(f)
+        p.setPen(QColor(200, 20, 20))
+        p.drawText(6, 44, "K")
+        # Heart symbol
+        f2 = QFont("Arial", 18)
+        p.setFont(f2)
+        p.drawText(34, 56, "♥")
+        p.end()
+        return QIcon(px)
+
     def _build_tray(self) -> Optional[QSystemTrayIcon]:
         """Build a system tray icon with basic controls."""
         try:
             tray = QSystemTrayIcon()
+            tray.setIcon(self._make_tray_icon())
             tray.setToolTip("PokerLens")
             menu = QMenu()
 
-            toggle_action = menu.addAction("Toggle Overlay (F12)")
+            toggle_action = menu.addAction("Toggle Overlay (F8)")
             toggle_action.triggered.connect(self._overlay.toggle_visible)
 
             reposition_action = menu.addAction("Reposition Overlay")
@@ -301,6 +343,8 @@ class PokerLensApp:
         # Drain any in-flight equity thread before closing the DB
         self._equity_lock.acquire()
         self._equity_lock.release()
+        if self._dom_reader:
+            self._dom_reader.stop()
         # DB close is handled by atexit; calling it here would run it twice
 
 
@@ -321,9 +365,13 @@ def main() -> None:
 
     profile = load_profile(args.profile)
     print(f"Loaded profile: {profile.name} (window: '{profile.window_title}')")
-    print(f"  Hero cards:      {len(profile.hero_cards)}")
-    print(f"  Community cards: {len(profile.community_cards)}")
-    print(f"  Seat cards:      {len(profile.seat_cards)}")
+    if profile.dom_url:
+        print(f"  Mode: DOM reader — {profile.dom_url}")
+    else:
+        print(f"  Mode: screen capture + CNN")
+        print(f"  Hero cards:      {len(profile.hero_cards)}")
+        print(f"  Community cards: {len(profile.community_cards)}")
+        print(f"  Seat cards:      {len(profile.seat_cards)}")
 
     app = QApplication(sys.argv)
     app.setQuitOnLastWindowClosed(False)  # Keep running when overlay is hidden
@@ -335,7 +383,7 @@ def main() -> None:
         sys.exit(1)
     poker_app.start()
 
-    print("\nPokerLens running. Press F12 to toggle overlay. Right-click tray icon to quit.")
+    print("\nPokerLens running. Press F8 to toggle overlay. Right-click tray icon to quit.")
     ret = app.exec()
     poker_app.shutdown()
     sys.exit(ret)
